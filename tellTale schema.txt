@@ -1,0 +1,61 @@
+CREATE TABLE user (
+        nid                 INT NOT NULL AUTO_INCREMENT,
+        name                VARCHAR(40) NOT NULL,
+        mail                VARCHAR(50) NOT NULL,
+        password 	        VARCHAR(50) NOT NULL,
+		country 	        VARCHAR(50) NOT NULL,
+		isBanned            BOOL,
+        PRIMARY KEY(nid)
+
+);
+
+CREATE TABLE post (
+        pid                 INT NOT NULL AUTO_INCREMENT,
+		nid                 INT NOT NULL,
+		parent              INT DEFAULT NULL,
+        text                TEXT NOT NULL,
+		isSuggestedEnd      BOOL NOT NULL DEFAULT FALSE ,  
+        isEnd               BOOL NOT NULL DEFAULT FALSE ,  
+		isAppended          BOOL NOT NULL DEFAULT FALSE ,
+		timeStamp           TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY(pid),
+		FOREIGN KEY (nid) REFERENCES User(nid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE	
+);
+
+CREATE TABLE vote (
+        pid                 INT NOT NULL,
+		nid                 INT NOT NULL,
+        PRIMARY KEY(pid,nid),
+		FOREIGN KEY (pid) REFERENCES Post(pid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+		FOREIGN KEY (nid) REFERENCES User(nid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+		
+);
+
+CREATE TABLE published 
+(
+        pid                 INT NOT NULL,
+		likeCount           INT ,
+		shareCount          INT ,
+		viewCount           INT ,
+        PRIMARY KEY(pid),
+		FOREIGN KEY (pid) REFERENCES Post(pid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+		
+);
+
+
+INSERT INTO `telltale`.`user` (`nid`, `name`, `mail`, `password`, `country`, `isBanned`) VALUES (NULL, 'Azad', 'salam_azad223@yahoo.com', ':p', 'Bangladesh', NULL);
+
+
+
+SELECT * 
+FROM  `post` 
+ORDER BY TIMESTAMP DESC 
+LIMIT 0 , 3
