@@ -3,6 +3,11 @@
 class Add_comment extends CI_Controller
 {
 
+
+        public function index()
+	{
+                $this->mark_is_append_true(1);
+	}
         // post method a input nite hobe
         // parent er isAppended True korte hobe
         // notun post add korte hobe
@@ -21,13 +26,14 @@ class Add_comment extends CI_Controller
                 $isSuggestedEnd = true;
 
             $this->add_comment($nid, $parent, $text,$isSuggestedEnd);
-            $this->mark_is_append_true($parent);
+            $this->mark_is_append_true($parent);//why???leaf asche mane to agei parent append hoise....
         }
 
         //Mark the isAppend field True
         public function mark_is_append_true($pid)
         {
-            
+            $this->load->model('post_model');
+            $this->post_model->mark_is_append_true($pid);
         }
 
         //ekta post er id (parent) dile oitar pore append kore dibe
