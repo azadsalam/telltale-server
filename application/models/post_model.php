@@ -13,7 +13,6 @@ class Post_model extends CI_Model
             $this->db->set('nid',$nid);
             $this->db->set('parent',$parent);
             $this->db->set('text',$text);
-
             $this->db->insert('post');
     }
 
