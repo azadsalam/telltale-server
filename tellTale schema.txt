@@ -14,10 +14,10 @@ CREATE TABLE post (
 		nid                 INT NOT NULL,
 		parent              INT DEFAULT NULL,
         text                TEXT NOT NULL,
-		isSuggestedEnd      BOOL NOT NULL DEFAULT FALSE ,  
+	isSuggestedEnd      BOOL NOT NULL DEFAULT FALSE ,  
         isEnd               BOOL NOT NULL DEFAULT FALSE ,  
-		isAppended          BOOL NOT NULL DEFAULT FALSE ,
-		timeStamp           TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	isAppended          BOOL NOT NULL DEFAULT FALSE ,
+	timeStamp           TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY(pid),
 		FOREIGN KEY (nid) REFERENCES User(nid)
 		ON DELETE CASCADE

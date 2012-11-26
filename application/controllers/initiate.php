@@ -11,8 +11,8 @@ class Initiate extends CI_Controller
         public function submit()
         {
 
-            
             $this->load->model('post_model');
+            
         
             // FOR NOW LET NID = 1
             $nid = 1;
@@ -21,13 +21,16 @@ class Initiate extends CI_Controller
 
             $this->post_model->insertPost($nid,$parent,$text);           
             //echo "called submit with  $starting_post";
+
+            $this->start_story_from_post($nid,$parent,$text);
             echo "Initiated Story : $text";
             //echo $starting_post;
-        }
+          }
+
 
 
         
-        public function start_story_from_post()
+        public function start_story_from_post($nid,$parent,$text)
         {
             $this->load->model('post_model');
 
