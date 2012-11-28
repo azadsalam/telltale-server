@@ -27,6 +27,20 @@ class Post_model extends CI_Model
        $this->db->query('UPDATE post SET  isEnd = TRUE WHERE pid = ?', $pid);
    }
 
+    public function insertPost_ByAttribute($attribute)
+    {
+            $this->db->set('nid',$attribute['nid']);
+            $this->db->set('parent',$attribute['parent']);
+            $this->db->set('text',$attribute['text']);
+            $this->db->set('isSuggestedEnd',$attribute['isSuggestedEnd']);
+            $this->db->set('isEnd',$attribute['isEnd']);
+            $this->db->set('isAppended',$attribute['isAppended']);
+
+
+            $this->db->insert('post');
+    }
+
+
     
 }
 

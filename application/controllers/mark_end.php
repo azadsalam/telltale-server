@@ -5,7 +5,7 @@ class Mark_end extends CI_Controller
 	public function index()
 	{
           //      $this->load->view('welcome_message');
-             $this->mark_isEnd_true(1);//test
+            // $this->mark_isEnd_true(1);//test
 	}
 
         // ei pid er isEnd true kore dite hobe
