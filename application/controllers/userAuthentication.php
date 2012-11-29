@@ -6,13 +6,12 @@ class UserAuthentication extends CI_Controller
         {
            // $this->load->view('initiate_view');
         }
-        
+
+        // return nid if authenticated, else return null
         public function getNativeId($mail,$password)
         {
-
             $this->load->model('user_model');
-            $nid=$this->user_model->getNativeId($mail,$password);
-            
+            $nid=$this->user_model->getNativeId($mail,$password);  
         }
 
 

@@ -5,9 +5,10 @@
  */
 class User_model extends CI_Model
 {
-   private function process($str)
+    private function process($str)
     {
-         return sha1($str.$this->config->item('encryption_key'));
+        return $str;
+        // return sha1($str.$this->config->item('encryption_key'));
     }
 
     public function getNativeId($mail,$password)
@@ -21,7 +22,6 @@ class User_model extends CI_Model
 		{
                        $row = $query->row();
                        return  $row->nid;
-
 		}
                 return NULL;
                 //echo "False";

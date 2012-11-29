@@ -1,0 +1,33 @@
+1)ONGOING STORIES ->
+input : start, number
+output :
+
+story er serial korte hobe -> time er descending order a
+"number songkhok story , starting from "start"
+-> prottektar (first post er pid, text, nid and like count , nid er name)
+ekta array akare return korte hobe
+
+
+
+2)Completed story -> same as before
+
+
+3) full story -> staring post er pid dile pura story ta ene dibe
+
+input : pid of starting post
+output : full story
+
+->prottek post er jonno (pid, nid, text, likecount, nid er name)
+
+
+4)user reg :
+
+5) append :
+-> input : pid
+-> oi pid take story te append kore dibe
+
+
+6) add comment :
+input : nid, text, isfinish
+output : just tree te add korbe, but still appended na to story
+

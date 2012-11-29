@@ -15,7 +15,7 @@ class Initiate extends CI_Controller
             
         
             // FOR NOW LET NID = 1
-            $nid = 1;
+            $nid = $this->input->post("nid");;
             $parent=NULL;
             $text = $this->input->post("starting_post");
 
