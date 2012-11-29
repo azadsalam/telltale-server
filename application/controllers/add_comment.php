@@ -26,7 +26,7 @@ class Add_comment extends CI_Controller
                 $isSuggestedEnd = true;
 
             $this->add_comment($nid, $parent, $text,$isSuggestedEnd);
-            $this->mark_is_append_true($parent);//why???leaf asche mane to agei parent append hoise....
+            //$this->mark_is_append_true($parent);//why???leaf asche mane to agei parent append hoise....
         }
 
         //Mark the isAppend field True
