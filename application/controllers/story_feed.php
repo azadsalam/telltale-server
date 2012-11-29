@@ -8,7 +8,7 @@ class Story_feed extends CI_Controller
                 $this->load->view('story_feed_view');
 	}
 
-        public function load($start,$count)
+        public function load($start,$count)//what is $start??? $count??
         {
 
         }
