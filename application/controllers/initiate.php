@@ -10,10 +10,7 @@ class Initiate extends CI_Controller
         // SAVES A INITIAL STORY IN DATABASE
         public function submit()
         {
-
             $this->load->model('post_model');
-            
-        
             // FOR NOW LET NID = 1
             $nid = $this->input->post("nid");;
             $parent=NULL;
@@ -27,10 +24,30 @@ class Initiate extends CI_Controller
             //echo $starting_post;
           }
 
+          public function androidQuery()
+          {
+                     $json=$_SERVER['HTTP_JSON'];
+                     $data=json_decode($json);
+
+                     $nid = $data->{'nid'};
+                     $text= $data->{'text'};
+                     
+                     $this->initiateStory($nid, $text);
+
+                     //return null;
+          }
+
+          public function  initiateStory($nid,$text)
+          {
+                $this->load->model('post_model');
+                $parent=NULL;
+                $this->post_model->insertPost($nid,$parent,$text);
+          }
 
 
-        
-        public function start_story_from_post($nid,$parent,$text)
+
+
+          public function start_story_from_post($nid,$parent,$text)
         {
             $this->load->model('post_model');
 
