@@ -26,6 +26,19 @@ class User_model extends CI_Model
                 return NULL;
                 //echo "False";
     }
+     function getName($nid)
+     {
+         $this->db->select('name');
+         $this->db->where('nid', $nid);
+         $query = $this->db->get('user');
+
+		if($query->num_rows == 1)
+		{
+                       $row = $query->row();
+                       return  $row->name;
+		}
+                return NULL;
+     }
 
 
    

@@ -25,7 +25,7 @@ CREATE TABLE post (
 );
 
 CREATE TABLE vote (
-        pid                 INT NOT NULL,
+                pid                 INT NOT NULL,
 		nid                 INT NOT NULL,
         PRIMARY KEY(pid,nid),
 		FOREIGN KEY (pid) REFERENCES Post(pid)

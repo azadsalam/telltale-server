@@ -1,33 +1,37 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Story_feed extends CI_Controller
+class CompletedStory_feed extends CI_Controller
 {
 
 	public function index()
 	{
-            $this->load->view('story_feed_view');
-           // $this->load(5,5);
+            $this->load->view('completedStory_feed_view');
+           //$this->load(1,2);
 	}
 
         public function load($start,$count)//what is $start??? $count??
         {
+            
+
 
             $this->load->model('post_model');
-            $ongoing_story=$this->post_model->get_ongoing_story($start,$count);
+            $completed_story=$this->post_model->get_pid_nid_text_forCompleted_story($start,$count);
+
+          
             for($i=$start;$i<$start+$count;$i++)
             {
-                if($i<count($ongoing_story))
+                if($i<count($completed_story))
                 {
-                   $ongoing_story[$i]['name']=$this->get_nameBynid($ongoing_story[$i]['nid']);
-                   $ongoing_story[$i]['vote']=$this->get_vote_count($ongoing_story[$i]['pid']);
+                   $completed_story[$i]['name']=$this->get_nameBynid($completed_story[$i]['nid']);
+                   $completed_story[$i]['vote']=$this->get_vote_count($completed_story[$i]['pid']);
                 }
-                
+
             }
 
 
-          return $ongoing_story;
-           // print_r($ongoing_story);
-          // return $ongoing_story;//array structure $ongoing_story['index']['pid']
+          return $completed_story;
+          //  print_r($completed_story);
+          // return $completed_story;//array structure $completed_story['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']
                                                               //['index']['name']
@@ -48,7 +52,7 @@ class Story_feed extends CI_Controller
 
         }
 
-        
+
 }
 
 /* End of file welcome.php */
