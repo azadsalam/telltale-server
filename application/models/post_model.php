@@ -79,7 +79,7 @@ class Post_model extends CI_Model
 
 
 
-  function  get_pid_nid_text_forCompleted_story($start,$count)
+  function  get_pid_nid_text_AllCompleted_story($start,$count)
   {
 
      $query="SELECT pid,nid,text FROM post WHERE parent IS NULL AND pid
@@ -114,6 +114,100 @@ class Post_model extends CI_Model
 
       
   }
+
+
+  function get_nid_text_isEnd($pid)
+  {
+      $query="SELECT nid,text,isEnd FROM post WHERE pid=?";
+
+        $q=$this->db->query($query,$pid);
+
+		if($q->num_rows == 1)
+		{
+                       $row = $q->row();
+                       $attribute['nid']=$row->nid;
+                       $attribute['text']=$row->text;
+                       $attribute['isEnd']=$row->isEnd;
+                       return $attribute;
+
+		}
+                return NULL;
+
+  }
+
+
+  function get_upto_completed_part_ofStory($root)//eta jekono story r root dile jototuku appende part
+                                                 //ase tototuku return korbe jodi completed hoi taile puratai return korbe
+  {                                               // jodi ongoing hoi tahole jototuku appended tototuku korbe
+      $node=$root;
+      $post_array;$index=0;
+     while(true)
+     {
+         $attribute=$this->get_nid_text_isEnd($node);
+         $post_array[$index]['pid']=$node;
+         $post_array[$index]['nid']=$attribute['nid'];
+         $post_array[$index]['text']=$attribute['text'];
+         if($attribute['isEnd'])
+              break;
+
+         $index++;
+         $node=$this->get_nextChildrenThatisAppended($node);
+         if($node==NULL)break;
+     }
+
+    if(isset($post_array))
+        return $post_array;
+    else return;
+
+      
+  }
+
+  function get_UnappendedPart_of_OngoingStory($lastAppendedPostId)//last jei post ta ongoing story r append hoise oita dile er child gula ferot korbe
+  {
+        $query="SELECT pid FROM post WHERE parent = ? AND isAppended = 0";
+
+        $q=$this->db->query($query,$lastAppendedPostId);
+        $index=0;
+         if($q->num_rows()>0)
+	  {
+	       foreach($q->result() as $row)
+        	{
+                        $attribute=$this->get_nid_text_isEnd($row->pid);
+                        $post_array[$index]['pid']=$row->pid;
+                         $post_array[$index]['nid']=$attribute['nid'];
+                         $post_array[$index]['text']=$attribute['text'];
+                         $index++;
+                  }
+          }
+          else return;
+
+      if(isset($post_array))
+        return $post_array;
+       else return;
+
+  }
+
+
+   function get_nextChildrenThatisAppended($parentid)
+   {
+       $query="SELECT pid FROM post WHERE parent = ? AND isAppended = 1";
+
+        $q=$this->db->query($query,$parentid);
+
+		if($q->num_rows == 1)
+		{
+                       $row = $q->row();
+                       
+                       return $row->pid;
+
+		}
+                return NULL;
+       
+
+   }
+
+ 
+  
 
     
 }
