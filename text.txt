@@ -30,3 +30,9 @@ output : full story
 input : nid, text, isfinish
 output : just tree te add korbe, but still appended na to story
 
+7)Single Ongoing story 
+input : pid of 1st segment(or comment)
+output : jototuk append hoise tototuk + last append er possible suggestions....
+
+
+
