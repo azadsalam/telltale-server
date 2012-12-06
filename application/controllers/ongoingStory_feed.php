@@ -10,6 +10,17 @@ class OngoingStory_feed extends CI_Controller
           //  $this->getFullStory(1);
 	}
 
+
+        public function test()
+        {
+            $arr = $this->load(0,5);
+
+            foreach($arr as $a){
+                print_r($a);
+                echo "<br>";
+            }
+
+        }
         public function load($start,$count)//what is $start??? $count??
         {
 
