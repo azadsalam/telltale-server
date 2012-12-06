@@ -10,16 +10,52 @@ class OngoingStory_feed extends CI_Controller
           //  $this->getFullStory(1);
 	}
 
+        public function androidQuery()
+        {
+                         $json=$_SERVER['HTTP_JSON'];
+                         $data=json_decode($json);
+
+
+                          $start=intval($data->{'start'});
+                          $count =intval( $data->{'count'});
+
+                          $arr = $this->load($start,$count);
+                          $i=$start;
+                          foreach($arr as $a)
+                          {
+                              $ret["R".$i] = $a;
+                              $i++;
+                          }
+                          print_r(json_encode($ret));
+        }
 
         public function test()
         {
-            $arr = $this->load(0,5);
+            
+            $arr = $this->load(2,2);
 
+            print_r($arr);
+            echo "<br/><br/>";
             foreach($arr as $a){
                 print_r($a);
                 echo "<br>";
             }
 
+             echo "<br/><br/>";
+
+                    $start=intval("2");
+                          $count =intval( "2");
+
+                          $arr = $this->load($start,$count);
+                          $i=$start;
+                          
+                          foreach($arr as $a)
+                          {
+                              $ret["R".$i] = $a;
+                              $i++;
+                              echo "$i \n";
+                          }
+                          print_r(json_encode($ret));
         }
         public function load($start,$count)//what is $start??? $count??
         {
