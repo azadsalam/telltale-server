@@ -53,7 +53,7 @@ class Post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
-                            $c++;
+                            
                             if($c>=$start && $c<$start+$count)
                             {
 
@@ -66,6 +66,7 @@ class Post_model extends CI_Model
                                if(isset($data))
                                 return $data;
                             }
+                            $c++;
 
 			}
 
@@ -91,7 +92,7 @@ class Post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
-                            $c++;
+                            
                             if($c>=$start && $c<$start+$count)
                             {
 
@@ -104,6 +105,7 @@ class Post_model extends CI_Model
                                if(isset($data))
                                 return $data;
                             }
+                            $c++;
 			}
 
 

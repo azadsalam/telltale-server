@@ -5,9 +5,9 @@ class CompletedStory_feed extends CI_Controller
 
 	public function index()
 	{
-           // $this->load->view('completedStory_feed_view');
-           //$this->load(1,2);
-            $this->getFullStory(1);
+            $this->load->view('completedStory_feed_view');
+          // $this->load(0,5);
+           // $this->getFullStory(2);
 	}
 
         public function load($start,$count)//what is $start??? $count??
@@ -21,7 +21,7 @@ class CompletedStory_feed extends CI_Controller
           
             for($i=$start;$i<$start+$count;$i++)
             {
-                if($i<count($completed_story))
+                if($i<$start+count($completed_story))
                 {
                    $completed_story[$i]['name']=$this->get_nameBynid($completed_story[$i]['nid']);
                    $completed_story[$i]['vote']=$this->get_vote_count($completed_story[$i]['pid']);
@@ -30,9 +30,9 @@ class CompletedStory_feed extends CI_Controller
             }
 
 
-          return $completed_story;
+         // return $completed_story;
           //  print_r($completed_story);
-          // return $completed_story;//array structure $completed_story['index']['pid']
+           return $completed_story;//array structure $completed_story['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']
                                                               //['index']['name']
@@ -64,7 +64,7 @@ class CompletedStory_feed extends CI_Controller
              $post_array[$i]['vote']=$this->get_vote_count($post_array[$i]['pid']);
          }
 
-        // print_r($post_array);
+         //print_r($post_array);
         return $post_array;//array structure        $post_array['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']
