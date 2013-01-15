@@ -37,6 +37,8 @@ class Initiate extends CI_Controller
                      //return null;
           }
 
+
+          
           public function  initiateStory($nid,$text)
           {
                 $this->load->model('post_model');

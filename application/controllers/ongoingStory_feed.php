@@ -29,6 +29,12 @@ class OngoingStory_feed extends CI_Controller
                           print_r(json_encode($ret));
         }
 
+        public function testStory()
+        {
+            $array = $this->getFullStory(9);
+
+            print_r($array);
+        }
         public function test()
         {
             
