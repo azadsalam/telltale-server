@@ -36,3 +36,15 @@ output : jototuk append hoise tototuk + last append er possible suggestions....
 
 
 
+15 January 2013
+New Tasks
+
+1 ) initiate.php ->
+public function  initiateStory($nid,$text)
+
+// input : nid [native user ID]
+             text [the first post]
+
+//output : Initiate a story with text , with user id = nid
+return null
+
