@@ -29,10 +29,49 @@ class OngoingStory_feed extends CI_Controller
                           print_r(json_encode($ret));
         }
 
+         public function getFullStoryFromAndroid()
+        {
+                         $json=$_SERVER['HTTP_JSON'];
+                         $data=json_decode($json);
+                         
+                          $pid=intval($data->{'pid'});
+                          
+                          $array =  $this->getFullStory($pid);
+
+
+                          $tmp = $array['appended_post_array'];
+                          $count = count($tmp);
+                          $array['appended_post_count'] = $count;
+                          //$array['Unappended_part_array']
+                          $tmp = $array['Unappended_part_array'];
+                          $count = count($tmp);
+                          $array['Unappended_part_count'] = $count;
+
+                          print_r(json_encode($array,JSON_FORCE_OBJECT));
+        }
+
         public function testStory()
         {
             $array = $this->getFullStory(9);
 
+
+            $tmp = $array['appended_post_array'];
+            $count = count($tmp);
+            $array['appended_post_count'] = $count;
+            //$array['Unappended_part_array']
+            $tmp = $array['Unappended_part_array'];
+            $count = count($tmp);
+            $array['Unappended_post_count'] = $count;
+
+            print_r(json_encode($array));
+//JSON_NUMERIC_CHECK
+                        echo "<br/>";            echo "<br/>";echo "<br/>";
+
+                                    print_r(json_encode($array,JSON_FORCE_OBJECT));
+//JSON_NUMERIC_CHECK
+                        echo "<br/>";            echo "<br/>";echo "<br/>";
+
+                        
             print_r($array);
         }
         public function test()
