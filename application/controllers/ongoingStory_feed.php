@@ -6,8 +6,8 @@ class OngoingStory_feed extends CI_Controller
 	public function index()
 	{
             $this->load->view('story_feed_view');
-          //  $this->load(0,10);
-          //  $this->getFullStory(1);
+            $this->load(0,10);
+            $this->getFullStory(1);
 	}
 
 
