@@ -1,0 +1,8 @@
+initiate.php ->
+public function  initiateStory($nid,$text)
+
+// input : nid [native user ID]
+             text [the first post]
+
+//output : Initiate a story with text , with user id = nid 
+return null
