@@ -1,0 +1,9 @@
+INSERT INTO `telltale`.`post` (`pid`, `nid`, `parent`, `text`, `isSuggestedEnd`, `isEnd`, `isAppended`, `timeStamp`) VALUES (NULL, '1', NULL, '1st story start.....', '0', '0', '0', CURRENT_TIMESTAMP);
+INSERT INTO `telltale`.`post` (`pid`, `nid`, `parent`, `text`, `isSuggestedEnd`, `isEnd`, `isAppended`, `timeStamp`) VALUES (NULL, '2', '27', '1st story End....', '1', '1', '1', CURRENT_TIMESTAMP);
+INSERT INTO `telltale`.`published` (`pid`, `likeCount`, `shareCount`, `viewCount`) VALUES ('27', '3', '4', '5');
+
+INSERT INTO `telltale`.`post` (`pid`, `nid`, `parent`, `text`, `isSuggestedEnd`, `isEnd`, `isAppended`, `timeStamp`) VALUES (NULL, '2', NULL, '2nd man start a story', '0', '0', '0', CURRENT_TIMESTAMP);
+
+INSERT INTO `telltale`.`post` (`pid`, `nid`, `parent`, `text`, `isSuggestedEnd`, `isEnd`, `isAppended`, `timeStamp`) VALUES (NULL, '1', '29', '2nd mens story end here', '1', '1', '1', CURRENT_TIMESTAMP);
+
+INSERT INTO `telltale`.`post` (`pid`, `nid`, `parent`, `text`, `isSuggestedEnd`, `isEnd`, `isAppended`, `timeStamp`) VALUES (NULL, '2', NULL, '2nd mans ongoing story startas', '0', '0', '0', CURRENT_TIMESTAMP);

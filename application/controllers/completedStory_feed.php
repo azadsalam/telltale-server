@@ -30,6 +30,8 @@ class CompletedStory_feed extends CI_Controller
 
             echo $array;
         }
+       
+
         public function load($start,$count)//what is $start??? $count??
         {
             
