@@ -39,7 +39,6 @@ class Post_model extends CI_Model
             $this->db->insert('post');
     }
 
-
     function get_ongoing_story($start,$count)
     {
 
@@ -79,7 +78,79 @@ class Post_model extends CI_Model
     }
 
 
+    function get_ongoing_personalStory($start,$count,$nid)// ekta nidrishto nid er jonno tar shb ongoing story er feed
+    {
 
+        $query="SELECT pid,text FROM post WHERE parent IS NULL AND pid NOT IN
+            (SELECT pid FROM published) AND nid=? ORDER BY timeStamp DESC ";
+
+        //$query="SELECT pid,nid,text FROM post WHERE parent = ?";
+        $c=0;
+        $q=$this->db->query($query,$nid);
+              if($q->num_rows()>0)
+		{
+			foreach($q->result() as $row)
+			{
+                            
+                            if($c>=$start && $c<$start+$count)
+                            {
+
+                             $data[$c]['pid']=$row->pid;      
+                             $data[$c]['text']=$row->text;
+                            }
+                           if($c>=$start+$count)
+                            {
+                               if(isset($data))
+                                return $data;
+                            }
+                            $c++;
+
+			}
+
+
+		}else return;
+               if (isset($data))
+                 return $data;
+               else return;
+        
+    }
+
+  function  get_pid_nid_text_AllCompleted_PersonalStory($start,$count,$nid)//karo personal profile er shb story dekhar jonno
+  {
+
+     $query="SELECT pid,text FROM post WHERE parent IS NULL AND pid
+         IN (SELECT pid FROM published) AND nid=? ORDER BY timeStamp DESC ";
+      $q=$this->db->query($query,$nid);
+      $c=0;
+       if($q->num_rows()>0)
+		{
+			foreach($q->result() as $row)
+			{
+                            
+                            if($c>=$start && $c<$start+$count)
+                            {
+
+                             $data[$c]['pid']=$row->pid;
+                             $data[$c]['text']=$row->text;
+                            }
+                            if($c>=$start+$count)
+                            {
+                               if(isset($data))
+                                return $data;
+                            }
+                            $c++;
+			}
+
+
+		}else return;
+               if (isset($data))
+                 return $data;
+               else return;
+
+      
+  }
+
+  
   function  get_pid_nid_text_AllCompleted_story($start,$count)
   {
 
@@ -136,6 +207,27 @@ class Post_model extends CI_Model
                 return NULL;
 
   }
+  
+  function get_nid_text_isSuggestedEnd_isEnd($pid)//isSuugestionEnd jog korar jonno unappended part e
+  {
+      $query="SELECT nid,text,isSuggestedEnd,isEnd FROM post WHERE pid=?";
+
+        $q=$this->db->query($query,$pid);
+
+		if($q->num_rows == 1)
+		{
+                       $row = $q->row();
+                       $attribute['nid']=$row->nid;
+                       $attribute['text']=$row->text;
+                       $attribute['isSuggestedEnd']=$row->isSuggestedEnd;
+					   $attribute['isEnd']=$row->isEnd;
+					   
+                       return $attribute;
+
+		}
+                return NULL;
+
+  }
 
 
   function get_upto_completed_part_ofStory($root)//eta jekono story r root dile jototuku appende part
@@ -164,7 +256,7 @@ class Post_model extends CI_Model
       
   }
 
-  function get_UnappendedPart_of_OngoingStory($lastAppendedPostId)//last jei post ta ongoing story r append hoise oita dile er child gula ferot korbe
+ function get_UnappendedPart_of_OngoingStory($lastAppendedPostId)//last jei post ta ongoing story r append hoise oita dile er child gula ferot korbe
   {
         $query="SELECT pid FROM post WHERE parent = ? AND isAppended = 0";
 
@@ -174,10 +266,38 @@ class Post_model extends CI_Model
 	  {
 	       foreach($q->result() as $row)
         	{
-                        $attribute=$this->get_nid_text_isEnd($row->pid);
+                        $attribute=$this->get_nid_text_isSuggestedEnd_isEnd($row->pid);
                         $post_array[$index]['pid']=$row->pid;
                          $post_array[$index]['nid']=$attribute['nid'];
                          $post_array[$index]['text']=$attribute['text'];
+                         $index++;
+                  }
+          }
+          else return;
+
+      if(isset($post_array))
+        return $post_array;
+       else return;
+
+  }
+
+
+  function get_UnappendedPart_of_OngoingStory2($lastAppendedPostId)//isSuugestionEnd shoho
+  {
+        $query="SELECT pid FROM post WHERE parent = ? AND isAppended = 0";
+
+        $q=$this->db->query($query,$lastAppendedPostId);
+        $index=0;
+      if($q->num_rows()>0)
+	  {
+	       foreach($q->result() as $row)
+        	{
+                        $attribute=$this->get_nid_text_isSuggestedEnd_isEnd($row->pid);
+                        $post_array[$index]['pid']=$row->pid;
+                         $post_array[$index]['nid']=$attribute['nid'];
+                         $post_array[$index]['text']=$attribute['text'];
+						 $post_array[$index]['isSuggestedEnd']=$attribute['isSuggestedEnd'];
+						 
                          $index++;
                   }
           }

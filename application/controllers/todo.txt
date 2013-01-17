@@ -6,3 +6,11 @@ public function  initiateStory($nid,$text)
 
 //output : Initiate a story with text , with user id = nid 
 return null
+
+
+Vacation...:)
+
+1.PersonalCompletedStory_feed name notun controller likhsi oitar function load($start,$count,$nid) e nid pass kore dile tar completed story gular initiate post gula nia ashbe
+2.PersonalOngoingStory_feed name notun controller likhsi oitar function load($start,$count,$nid) e nid pass kore dile tar ongoing story gular initiate post gula nia ashbe
+3.mark-end name controller ase...oitar  public function mark_isEnd_true($pid) ta true kore dey isEnd ke
+4.ongoingStory_feed e r mdhe  function getFullStory2($root) te shudhu Unappended part array te isSuggestedEnd back korsi oikahne array structure likhe disi

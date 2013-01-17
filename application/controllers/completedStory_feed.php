@@ -10,6 +10,7 @@ class CompletedStory_feed extends CI_Controller
            // $this->getFullStory(2);
 	}
 
+       
         public function load($start,$count)//what is $start??? $count??
         {
             
