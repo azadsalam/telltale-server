@@ -9,8 +9,20 @@ class PersonalOngoingStory_feed extends CI_Controller
             $this->load(0,10,2);
             
 	}
+	public function test()
+	{
+            echo "TESTING<BR/>";
+            $this->load->view('story_feed_view');
+            $this->load(0,5,1);
 
-       
+	}
+
+
+        public function my_ongoing_feed_from_android()
+        {
+        }
+
+        
         public function load($start,$count,$nid)//what is $start??? $count??
         {
 
