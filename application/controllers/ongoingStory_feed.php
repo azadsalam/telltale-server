@@ -36,7 +36,7 @@ class OngoingStory_feed extends CI_Controller
                          
                           $pid=intval($data->{'pid'});
                           
-                          $array =  $this->getFullStory($pid);
+                          $array =  $this->getFullStory2($pid);
 
 
                           $tmp = $array['appended_post_array'];
@@ -52,7 +52,7 @@ class OngoingStory_feed extends CI_Controller
 
         public function testStory()
         {
-            $array = $this->getFullStory(9);
+            $array = $this->getFullStory2(17);
 
 
             $tmp = $array['appended_post_array'];
@@ -63,7 +63,7 @@ class OngoingStory_feed extends CI_Controller
             $count = count($tmp);
             $array['Unappended_post_count'] = $count;
 
-            print_r(json_encode($array));
+          
 //JSON_NUMERIC_CHECK
                         echo "<br/>";            echo "<br/>";echo "<br/>";
 

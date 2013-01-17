@@ -13,13 +13,34 @@ class PersonalOngoingStory_feed extends CI_Controller
 	{
             echo "TESTING<BR/>";
             $this->load->view('story_feed_view');
-            $this->load(0,5,1);
+
+            $start=0;
+            $count=5;
+            $nid=1;
+            $arr= $this->load($start,$count,$nid);
+            print_r($arr);
+
+              echo "<BR/>---<BR/>";
+             $arr= json_encode($arr,JSON_FORCE_OBJECT);
+             print_r($arr);
+
 
 	}
 
 
         public function my_ongoing_feed_from_android()
         {
+             $json=$_SERVER['HTTP_JSON'];
+             $data=json_decode($json);
+
+             $nid=intval($data->{'nid'});
+             $start=intval($data->{'start'});
+             $count=intval($data->{'count'});
+
+             $arr= $this->load($start,$count,$nid);
+             $arr= json_encode($arr,JSON_FORCE_OBJECT);
+             print_r($arr);
+
         }
 
         
