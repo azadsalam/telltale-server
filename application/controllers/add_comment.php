@@ -44,6 +44,22 @@ class Add_comment extends CI_Controller
             $this->post_model->mark_is_append_true($pid);
         }
 
+
+
+        public function addSuggestionFromAndroid()
+        {
+                     $json=$_SERVER['HTTP_JSON'];
+                     $data=json_decode($json);
+
+                     $nid = $data->{'nid'};
+                     $parent  = $data->{'parent'};
+                     $text = $data->{'text'};
+                     $isSuggestedEnd = $data->{'isSuggestedEnd'};
+
+                     $this->add_comment_to_story($nid, $parent, $text, $isSuggestedEnd);
+        }
+        //
+        
         //ekta post er id (parent) dile oitar pore append kore dibe
         //comment er parent holo parent
         public function add_comment_to_story($nid,$parent,$text,$isSuggestedEnd)

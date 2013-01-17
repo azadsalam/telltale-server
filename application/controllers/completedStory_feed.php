@@ -10,6 +10,26 @@ class CompletedStory_feed extends CI_Controller
            // $this->getFullStory(2);
 	}
 
+
+        public function getCompletedStoriesFeedFromAndroid()
+        {
+            
+        }
+
+        public function test()
+        {
+            $start=0;
+            $count=0;
+            $array = $this->load($start, $count);
+
+            print_r($array);
+
+            echo "<br/><br/><br/>";
+
+            $array = json_encode($array, JSON_FORCE_OBJECT);
+
+            echo $array;
+        }
         public function load($start,$count)//what is $start??? $count??
         {
             
