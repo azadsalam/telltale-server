@@ -190,7 +190,7 @@ class OngoingStory_feed extends CI_Controller
          }
          //uporere etotukute appended post gular post shb ber kora hoise
          $last_appended_pid=$appended_post_array[count($appended_post_array)-1];
-         $Unappended_part_array=$this->post_model->get_UnappendedPart_of_OngoingStory($last_appended_pid);
+         $Unappended_part_array=$this->post_model->get_UnappendedPart_of_OngoingStory2($last_appended_pid);
         // print_r($Unappended_part_array);
          for($i=0;$i<count($Unappended_part_array);$i++)
          {
