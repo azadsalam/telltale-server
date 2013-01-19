@@ -6,8 +6,22 @@ class OngoingStory_feed extends CI_Controller
 	public function index()
 	{
             $this->load->view('story_feed_view');
-            $this->load(0,10);
-            $this->getFullStory(1);
+
+
+          $array =  $this->getFullStory2(17);
+          $tmp = $array['appended_post_array'];
+          $count = count($tmp);
+          $array['appended_post_count'] = $count;
+          //$array['Unappended_part_array']
+          $tmp = $array['Unappended_part_array'];
+          $count = count($tmp);
+          $array['Unappended_part_count'] = $count;
+
+          print_r(json_encode($array,JSON_FORCE_OBJECT));
+
+          echo "<br/><br/><br/><br/>";
+          print_r($array);
+
 	}
 
         public function androidQuery()

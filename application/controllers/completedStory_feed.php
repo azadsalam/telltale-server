@@ -19,7 +19,7 @@ class CompletedStory_feed extends CI_Controller
         public function test()
         {
             $start=0;
-            $count=0;
+            $count=5;
             $array = $this->load($start, $count);
 
             print_r($array);

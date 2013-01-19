@@ -13,8 +13,6 @@ class PersonalCompletedStory_feed extends CI_Controller
         public function load($start,$count,$nid)
         {
             
-
-
             $this->load->model('post_model');
             $completed_story=$this->post_model->get_pid_nid_text_AllCompleted_PersonalStory($start,$count,$nid);
 

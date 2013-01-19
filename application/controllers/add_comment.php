@@ -37,13 +37,28 @@ class Add_comment extends CI_Controller
 
         }
 
+
+
+
+         public function appendFromAndroid()
+        {
+                         $json=$_SERVER['HTTP_JSON'];
+                         $data=json_decode($json);
+
+                          $pid=intval($data->{'pid'});
+
+                          $this->mark_is_append_true($pid);
+
+
+        }
+
+
         //Mark the isAppend field True
         public function mark_is_append_true($pid)
         {
             $this->load->model('post_model');
             $this->post_model->mark_is_append_true($pid);
         }
-
 
 
         public function addSuggestionFromAndroid()

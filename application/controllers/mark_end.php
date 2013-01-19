@@ -8,7 +8,7 @@ class Mark_end extends CI_Controller
             // $this->mark_isEnd_true(1);//test
 	}
 
-        // ei pid er isEnd true kore dite hobe
+               // ei pid er isEnd true kore dite hobe
         public function mark_end_from_post()
         {
                  $pid = $this->input->post('pid');
