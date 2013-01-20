@@ -38,7 +38,7 @@ class Add_comment extends CI_Controller
 
         }
 
-<<<<<<< HEAD
+
          public function append($pid)//ekta pid dile append kore dibe
 		 {
 			 $this->mark_is_append_true($pid);
@@ -62,7 +62,7 @@ class Add_comment extends CI_Controller
 			 
 			 
 		 }
-=======
+
 
 
 
@@ -79,7 +79,7 @@ class Add_comment extends CI_Controller
         }
 
 
->>>>>>> 323cab9dc31187a56d93dbe268131553bca39a40
+
         //Mark the isAppend field True
         public function mark_is_append_true($pid)
         {
