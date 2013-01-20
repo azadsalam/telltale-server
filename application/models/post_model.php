@@ -7,7 +7,44 @@
 class Post_model extends CI_Model
 {
 
-    //inserts the first post into database
+    //inserts the first post into database\
+	
+	public function find_root($pid)
+	{
+		$parent=$pid;
+		while($parent!=NULL)
+		{
+			$pid=$parent;
+	      	$query="SELECT parent FROM post WHERE pid=?";
+			$q=$this->db->query($query,$pid);
+		   if($q->num_rows()>0)
+		   {
+			foreach($q->result() as $row)
+			{
+				$parent=$row->parent;
+			}
+		   }
+		   
+		
+		
+		}
+		return $pid;
+		
+	}
+	public function get_isSuggestedEnd($pid)
+	{
+		$query="SELECT isSuggestedEnd FROM post WHERE pid=?";
+		  $q=$this->db->query($query,$pid);
+		   if($q->num_rows()>0)
+		   {
+			foreach($q->result() as $row)
+			{
+				return $row->isSuggestedEnd;
+			}
+		   }
+		   else return ;
+
+	}
     public function insertPost($nid,$parent,$text)
     {
             $this->db->set('nid',$nid);

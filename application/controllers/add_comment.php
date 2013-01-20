@@ -4,7 +4,7 @@ class Add_comment extends CI_Controller
 {
 
 
-        public function index()
+    public function index()
 	{
                // $this->mark_is_append_true(1);
            // $this->add_comment_to_story(1, 1,"an apple fallen on his head..", false);
@@ -14,6 +14,7 @@ class Add_comment extends CI_Controller
            // $this->add_comment_to_story(1, 7,"an angel came in his dream", false);
             //$this->add_comment_to_story(2,7,"An earthquake happened..", false);
             //$this->add_comment_to_story(3,7,"He saw that he felt asleep in a dream..:P",true);
+			//$this->append(33);
 
 	}
         // post method a input nite hobe
@@ -37,6 +38,29 @@ class Add_comment extends CI_Controller
 
         }
 
+         public function append($pid)//ekta pid dile append kore dibe
+		 {
+			 $this->mark_is_append_true($pid);
+			 $this->load->model('post_model');
+			 $isSuggestedEnd=$this->post_model->get_isSuggestedEnd($pid);
+			 $this->post_model->mark_isEnd_true($pid);
+			 
+			 if($isSuggestedEnd)
+			 {
+				 
+				  $this->load->model('post_model');
+                 $root= $this->post_model->find_root($pid);
+				
+				 $this->load->model('published_model');
+				
+				 $this->published_model->publishStory($root,3,5,10);//ekhane future e thik korte hbe
+				 
+				 
+				 
+			 }
+			 
+			 
+		 }
         //Mark the isAppend field True
         public function mark_is_append_true($pid)
         {

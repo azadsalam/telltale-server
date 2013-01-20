@@ -26,6 +26,17 @@ class Published_model extends CI_Model
 
                  return $pid_array;
      }
+	 
+	 function publishStory($pid,$like,$share,$view)
+	 {
+		  $this->db->set('pid',$pid);
+            $this->db->set('likeCount',$like);
+            $this->db->set('shareCount',$share);
+			$this->db->set('viewCount',$view);
+            $this->db->insert('published');
+		 
+		 
+	 }
 
 
 
