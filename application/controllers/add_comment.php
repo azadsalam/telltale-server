@@ -38,6 +38,7 @@ class Add_comment extends CI_Controller
 
         }
 
+<<<<<<< HEAD
          public function append($pid)//ekta pid dile append kore dibe
 		 {
 			 $this->mark_is_append_true($pid);
@@ -61,6 +62,24 @@ class Add_comment extends CI_Controller
 			 
 			 
 		 }
+=======
+
+
+
+         public function appendFromAndroid()
+        {
+                         $json=$_SERVER['HTTP_JSON'];
+                         $data=json_decode($json);
+
+                          $pid=intval($data->{'pid'});
+
+                          $this->mark_is_append_true($pid);
+
+
+        }
+
+
+>>>>>>> 323cab9dc31187a56d93dbe268131553bca39a40
         //Mark the isAppend field True
         public function mark_is_append_true($pid)
         {
@@ -68,6 +87,21 @@ class Add_comment extends CI_Controller
             $this->post_model->mark_is_append_true($pid);
         }
 
+
+        public function addSuggestionFromAndroid()
+        {
+                     $json=$_SERVER['HTTP_JSON'];
+                     $data=json_decode($json);
+
+                     $nid = $data->{'nid'};
+                     $parent  = $data->{'parent'};
+                     $text = $data->{'text'};
+                     $isSuggestedEnd = $data->{'isSuggestedEnd'};
+
+                     $this->add_comment_to_story($nid, $parent, $text, $isSuggestedEnd);
+        }
+        //
+        
         //ekta post er id (parent) dile oitar pore append kore dibe
         //comment er parent holo parent
         public function add_comment_to_story($nid,$parent,$text,$isSuggestedEnd)
