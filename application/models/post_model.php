@@ -55,12 +55,12 @@ class Post_model extends CI_Model
 
    public function mark_is_append_true($pid)
    {
-       $this->db->query('UPDATE post SET  isAppended = TRUE WHERE pid = ?', $pid);
+       $this->db->query('UPDATE post SET  isAppended = 1 WHERE pid = ?', $pid);
    }
 
    public function mark_isEnd_true($pid)
    {
-       $this->db->query('UPDATE post SET  isEnd = TRUE WHERE pid = ?', $pid);
+       $this->db->query('UPDATE post SET  isEnd = 1 WHERE pid = ?', $pid);
    }
 
     public function insertPost_ByAttribute($attribute)

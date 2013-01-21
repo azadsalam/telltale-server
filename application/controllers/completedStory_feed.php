@@ -5,9 +5,9 @@ class CompletedStory_feed extends CI_Controller
 
 	public function index()
 	{
-            $this->load->view('completedStory_feed_view');
+           // $this->load->view('completedStory_feed_view');
           // $this->load(0,5);
-           // $this->getFullStory(2);
+           $this->getFullStory(37);
 	}
 
 
@@ -86,8 +86,8 @@ class CompletedStory_feed extends CI_Controller
              $post_array[$i]['vote']=$this->get_vote_count($post_array[$i]['pid']);
          }
 
-         //print_r($post_array);
-        return $post_array;//array structure        $post_array['index']['pid']
+         print_r($post_array);
+      //  return $post_array;//array structure        $post_array['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']
                                                               //['index']['name']
