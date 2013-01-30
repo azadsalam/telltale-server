@@ -39,7 +39,35 @@ class User_model extends CI_Model
 		}
                 return NULL;
      }
+	 
+	 
+	 public function User_Already_Exist($mail)
+	 {
+		 
+		 $query="SELECT * FROM user WHERE mail = ?";
+		 $q=$this->db->query($query,$mail);
+		   if($q->num_rows()>0)
+		   {
+			 return true;
+		   }
+		   return false;
+	 }
+	 
+	 
+	 public function SignUp($name,$mail,$password,$country)
+     {
+		 
+            $this->db->set('name',$name);
+            $this->db->set('mail',$mail);
+            $this->db->set('password',md5($password));
+            $this->db->set('country',$country);
+           
 
+
+            $this->db->insert('user');
+    }
+		 
+	 
 
    
 }
