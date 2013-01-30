@@ -73,7 +73,7 @@ class Add_comment extends CI_Controller
 
                           $pid=intval($data->{'pid'});
 
-                          $this->mark_is_append_true($pid);
+                          $this->append($pid);
 
 
         }

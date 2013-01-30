@@ -13,14 +13,27 @@ class CompletedStory_feed extends CI_Controller
 
         public function getCompletedStoriesFeedFromAndroid()
         {
-            
+                         $json=$_SERVER['HTTP_JSON'];
+                         $data=json_decode($json);
+
+
+                          $start=intval($data->{'start'});
+                          $count =intval( $data->{'count'});
+
+                          $array = $this->load($start, $count);
+
+
+            $array = json_encode($array, JSON_FORCE_OBJECT);
+
+            print_r( $array );
         }
 
         public function test()
         {
-            $start=0;
-            $count=5;
-            $array = $this->load($start, $count);
+            
+            $pid= 37;
+
+            $array = $this->getFullStory($pid);
 
             print_r($array);
 
@@ -28,7 +41,7 @@ class CompletedStory_feed extends CI_Controller
 
             $array = json_encode($array, JSON_FORCE_OBJECT);
 
-            echo $array;
+            print_r( $array );
         }
        
 
