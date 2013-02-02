@@ -8,7 +8,7 @@ class User_model extends CI_Model
     private function process($str)
     {
         return $str;
-        // return sha1($str.$this->config->item('encryption_key'));
+         //return sha1($str.$this->config->item('encryption_key'));
     }
 
     public function getNativeId($mail,$password)
@@ -59,11 +59,8 @@ class User_model extends CI_Model
 		 
             $this->db->set('name',$name);
             $this->db->set('mail',$mail);
-            $this->db->set('password',md5($password));
+            $this->db->set('password',  $this->process($password));
             $this->db->set('country',$country);
-           
-
-
             $this->db->insert('user');
     }
 		 

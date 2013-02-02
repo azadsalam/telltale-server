@@ -28,20 +28,39 @@ class CompletedStory_feed extends CI_Controller
             print_r( $array );
         }
 
+
+        public function getFullStoryFromAndroid()
+        {
+                         $json=$_SERVER['HTTP_JSON'];
+                         $data=json_decode($json);
+
+                          $pid=intval($data->{'pid'});
+
+                          $array['post_array'] =  $this->getFullStory($pid);
+
+                          $tmp = $array['post_array'];
+                          $count = count($tmp);
+                          $array['post_count'] = $count;
+                          //$array['Unappended_part_array']
+                        
+
+                          print_r(json_encode($array,JSON_FORCE_OBJECT));
+        }
+
         public function test()
         {
             
-            $pid= 37;
+            $pid= 44;
 
-            $array = $this->getFullStory($pid);
+  $array['post_array'] =  $this->getFullStory($pid);
 
-            print_r($array);
+                          $tmp = $array['post_array'];
+                          $count = count($tmp);
+                          $array['post_count'] = $count;
+                          //$array['Unappended_part_array']
 
-            echo "<br/><br/><br/>";
 
-            $array = json_encode($array, JSON_FORCE_OBJECT);
-
-            print_r( $array );
+                          print_r(json_encode($array,JSON_FORCE_OBJECT));
         }
        
 
@@ -99,7 +118,7 @@ class CompletedStory_feed extends CI_Controller
              $post_array[$i]['vote']=$this->get_vote_count($post_array[$i]['pid']);
          }
 
-         print_r($post_array);
+         return ($post_array);
       //  return $post_array;//array structure        $post_array['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']

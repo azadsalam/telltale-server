@@ -10,13 +10,42 @@ class PersonalCompletedStory_feed extends CI_Controller
            // $this->getFullStory(2);
 	}
 
+        public function test()
+	{
+            echo "TESTING<BR/>";
+         //   $this->load->view('story_feed_view');
+
+            $start=0;
+            $count=3;
+            $nid=1;
+
+             $arr= $this->load($start,$count,$nid);
+             $arr= json_encode($arr,JSON_FORCE_OBJECT);
+             print_r($arr);
+
+	}
+
+
+        public function getCompletedStoriesFeedFromAndroid()
+        {
+             $json=$_SERVER['HTTP_JSON'];
+             $data=json_decode($json);
+
+             $nid=intval($data->{'nid'});
+             $start=intval($data->{'start'});
+             $count=intval($data->{'count'});
+
+             $arr= $this->load($start,$count,$nid);
+             $arr= json_encode($arr,JSON_FORCE_OBJECT);
+             print_r($arr);
+        }
+
         public function load($start,$count,$nid)
         {
             
             $this->load->model('post_model');
             $completed_story=$this->post_model->get_pid_nid_text_AllCompleted_PersonalStory($start,$count,$nid);
 
-          
             for($i=$start;$i<$start+$count;$i++)
             {
                 if($i<$start+count($completed_story))
