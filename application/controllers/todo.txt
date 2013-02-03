@@ -36,3 +36,16 @@ function  initiateStory($nid,$text) theke..
 
 5.Profile name controller e function get_point($nid) kono nid dile tar point return kore....
 
+
+
+//get statistics :
+profile ->
+1) start
+2) post/comment
+3) append
+
+
+userAuthentiation
+->
+input : nid
+output : name

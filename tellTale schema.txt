@@ -51,9 +51,11 @@ CREATE TABLE published
 );
 
 
-INSERT INTO `telltale`.`user` (`nid`, `name`, `mail`, `password`, `country`, `isBanned`) VALUES (NULL, 'Azad', 'salam_azad223@yahoo.com', ':p', 'Bangladesh', NULL);
+INSERT INTO `user` (`nid`, `name`, `mail`, `password`, `country`, `isBanned`) VALUES (NULL, 'Azad', 'salam_azad223@yahoo.com', ':p', 'Bangladesh', NULL);
 
-ALTER TABLE user ADD point integer
+ALTER TABLE user ADD point integer;
+ALTER TABLE  `user` CHANGE  `point`  `point` INT( 11 ) NULL DEFAULT  '0';
+
 
 
 SELECT * 
