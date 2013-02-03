@@ -19,3 +19,20 @@ Vacation...:)
 
 *****
 registration.php te registrationFromAndroid($name,$mail,$password,$country) e shb likha ase cmnt e..
+
+
+*****
+point 
+  first e user table e ei sql chala ... ALTER TABLE user ADD point integer
+  
+1.kono post append hole 10 point pabe...see add_comment controller e  functio point_for_append_to_story($pid) jetake call kora hoise append($pid) function theke..
+
+2.Registration er shomoy 100 point pabe..eta direct registration er shomoy direct ionsert kore disi..
+
+3. initiate r jonnno 10 point jeta kora hoise initiate controller e function point_for_initiate_story($nid) e jeta cal kora hoise 
+function  initiateStory($nid,$text) theke..
+
+4. jokhn story shesh hoar shbai point pabe ...see function point_for_every_contributer_of_story( $contributer) jetake call kora hoise append($pid) function theke..initiator 50 pabe je..shesh korbe she 30 point..r majher shbai 10 kore...
+
+5.Profile name controller e function get_point($nid) kono nid dile tar point return kore....
+

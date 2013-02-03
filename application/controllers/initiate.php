@@ -4,7 +4,9 @@ class Initiate extends CI_Controller
 {
         public function index()
         {
-            $this->load->view('initiate_view');
+            //$this->load->view('initiate_view');
+			
+			//$this->initiateStory(2,'point point point..');
         }
 
         // SAVES A INITIAL STORY IN DATABASE
@@ -44,7 +46,24 @@ class Initiate extends CI_Controller
                 $this->load->model('post_model');
                 $parent=NULL;
                 $this->post_model->insertPost($nid,$parent,$text);
+				
+				$this->point_for_initiate_story($nid);
+				
           }
+		  
+		  
+     public function point_for_initiate_story($nid)//story initiate r jonno 10 point pabe
+	 {
+		
+		
+		
+		  $this->load->model('user_model');
+		 $this->user_model->add_point($nid,10);//initiate korar jonno 50 point
+		
+		
+		
+		
+	 }
 
 
 

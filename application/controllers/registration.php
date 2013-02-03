@@ -39,7 +39,7 @@ class Registration extends CI_Controller
     {
 
 
-                $message=$this->do_registration("bla","blabla","amisid","");
+              $message=$this->do_registration("bla","blabla","amisid","");
 
 		if($message['success'])
 		{
@@ -162,7 +162,10 @@ class Registration extends CI_Controller
 	  
 	  
   }
-		
+  
+  
+  
+    
 		
   function validate_name($name)
   {

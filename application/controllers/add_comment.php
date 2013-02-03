@@ -6,15 +6,13 @@ class Add_comment extends CI_Controller
 
     public function index()
 	{
-               // $this->mark_is_append_true(1);
-           // $this->add_comment_to_story(1, 1,"an apple fallen on his head..", false);
-           // $this->add_comment_to_story(2,1,"Queen Alizabeth saw this incident..", false);
-            //$this->add_comment_to_story(3,1,"Newton saw Alizabeth..",true);
-
-           // $this->add_comment_to_story(1, 7,"an angel came in his dream", false);
-            //$this->add_comment_to_story(2,7,"An earthquake happened..", false);
-            //$this->add_comment_to_story(3,7,"He saw that he felt asleep in a dream..:P",true);
-			$this->append(39);
+           
+			 
+			   
+			
+		//	$this->append(50);
+			
+			
 
 	}
         // post method a input nite hobe
@@ -42,20 +40,29 @@ class Add_comment extends CI_Controller
          public function append($pid)//ekta pid dile append kore dibe
 		 {
 			 $this->mark_is_append_true($pid);
+			 
+			 $this->point_for_append_to_story($pid);//append er jonno point pabe
+			 
 			 $this->load->model('post_model');
 			 $isSuggestedEnd=$this->post_model->get_isSuggestedEnd($pid);
 			 
 			 
 			 if($isSuggestedEnd)
 			 {
-				 $this->post_model->mark_isEnd_true($pid);
+				  $this->post_model->mark_isEnd_true($pid);
 				  $this->load->model('post_model');
-                 $root= $this->post_model->find_root($pid);
+                 $array= $this->post_model->find_root_contributer_of_story($pid);
 				
+				 $root=$array['root'];
+				 $contributer=$array['contributer'];
+				 
+				 
 				 $this->load->model('published_model');
 				
 				 $this->published_model->publishStory($root,3,5,10);//ekhane future e thik korte hbe
 				 
+				 $this->point_for_every_contributer_of_story($contributer);//story te jara jara contribute korse shbai point pabe..
+				 															//point r distribution function tai likha ase	
 				 
 				 
 			 }
@@ -63,6 +70,42 @@ class Add_comment extends CI_Controller
 			 
 		 }
 
+
+
+       public function point_for_append_to_story($pid)//karo comment append hole 10 point pabe
+	   {
+		
+		  $this->load->model('post_model');
+		  $nid=$this->post_model->get_nid($pid);
+		
+		  $this->load->model('user_model');
+		  $this->user_model->add_point($nid,10);
+		
+		
+     	}
+		
+		public function point_for_every_contributer_of_story( $contributer)//ei pid ta hoche last post er pid
+																	//ekta story shesh hole shb contributer 10 kore pabe	
+		{															//but initiator 50 point pabe	and end je korbe she pabe 20 point	
+																						
+			
+			 $this->load->model('user_model');
+			  
+			 
+		     $this->user_model->add_point($contributer[0],30);// je shesh korse she 30 point pabe
+			 
+			 for($i=1;$i<count($contributer)-1;$i++)
+			    $this->user_model->add_point($contributer[$i],10);//baki shobai 10 kore pabe
+				
+			
+			  
+			  $this->user_model->add_point($contributer[count($contributer)-1],50);// initiator 50 point pabe
+			 
+			
+			
+			
+			
+		}
 
 
 

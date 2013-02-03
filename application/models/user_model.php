@@ -61,8 +61,70 @@ class User_model extends CI_Model
             $this->db->set('mail',$mail);
             $this->db->set('password',  $this->process($password));
             $this->db->set('country',$country);
+			$this->db->set('point',100);  // registration e 100 point
             $this->db->insert('user');
     }
+	
+	
+	
+	public function add_point($nid,$point)
+	{
+		 $query="SELECT point FROM user WHERE nid=?";
+		 $q=$this->db->query($query,$nid); 
+		
+		 if($q->num_rows()>0)//ei jaiga pore thik korte hbe..just nicher func call korlei hbe
+		 {
+			foreach($q->result() as $row)
+			{
+                      
+			   $prevPoint=$row->point;      
+                           
+			}
+			
+		 }
+		 
+		  $newpoint= $prevPoint+$point;
+		   
+		  $data = array(
+               'point' => $newpoint
+               
+            );
+
+			$this->db->where('nid', $nid);
+			$this->db->update('user', $data);  
+		  
+		  
+		  
+		
+		  
+		
+		
+	}
+	
+	
+	public function get_point($nid)
+	{
+		
+		
+		 $query="SELECT point FROM user WHERE nid=?";
+		 $q=$this->db->query($query,$nid); 
+		
+		 if($q->num_rows()>0)
+		 {
+			foreach($q->result() as $row)
+			{
+                      
+			   return $row->point;      
+                           
+			}
+			
+		 }
+		 
+		 else return NULL;
+		
+		
+		
+	}
 		 
 	 
 

@@ -9,12 +9,17 @@ class Post_model extends CI_Model
 
     //inserts the first post into database\
 	
-	public function find_root($pid)
+	public function find_root_contributer_of_story($pid)///ei pid ta last post er pid..ekta array reutrn korbe jar modhe shb contributer r nid thakbe
 	{
+		$index=-1;
 		$parent=$pid;
 		while($parent!=NULL)
 		{
+			$index++;
 			$pid=$parent;
+			
+			$contributer[$index]=$this->get_nid($pid);
+			
 	      	$query="SELECT parent FROM post WHERE pid=?";
 			$q=$this->db->query($query,$pid);
 		   if($q->num_rows()>0)
@@ -28,7 +33,14 @@ class Post_model extends CI_Model
 		
 		
 		}
-		return $pid;
+		
+		
+		
+		$array['contributer']=$contributer;
+		$array['root']=$pid;
+		
+		
+		return $array;
 		
 	}
 	public function get_isSuggestedEnd($pid)
@@ -45,6 +57,23 @@ class Post_model extends CI_Model
 		   else return ;
 
 	}
+	
+	public function get_nid($pid)//eta ashole point add r shomoy lagtese
+ 	{
+		$query="SELECT nid FROM post WHERE pid=?";
+		  $q=$this->db->query($query,$pid);
+		   if($q->num_rows()>0)
+		   {
+			foreach($q->result() as $row)
+			{
+				return $row->nid;
+			}
+		   }
+		   else return ;
+
+	}
+	
+	
     public function insertPost($nid,$parent,$text)
     {
             $this->db->set('nid',$nid);
