@@ -53,6 +53,7 @@ CREATE TABLE published
 
 INSERT INTO `telltale`.`user` (`nid`, `name`, `mail`, `password`, `country`, `isBanned`) VALUES (NULL, 'Azad', 'salam_azad223@yahoo.com', ':p', 'Bangladesh', NULL);
 
+ALTER TABLE user ADD point integer
 
 
 SELECT * 

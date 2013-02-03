@@ -37,19 +37,31 @@ class Registration extends CI_Controller
 	 
     public function do_registration_from_android()
     {
+             $json=$_SERVER['HTTP_JSON'];
+             $data=json_decode($json);
 
 
-              $message=$this->do_registration("bla","blabla","amisid","");
+              $mail=$data->{'mail'};
+              $password = $data->{'password'};
+              $name = $data->{'name'};
+
+
+              $message=$this->do_registration($name, $mail, $password, "");
 
 		if($message['success'])
 		{
                     $arr['success'] = "true";
                     $arr['msg'] ="Successfully Registered";
+
+
+                    $nid = $this->getNativeId($mail, $password);
+
+                    $arr['nid'] = $nid;
                 }
 		else
 		{
                         $arr['success'] = "false";
-
+                        $arr['nid'] = "";
 			if($message['already_exist'])//true mane age theke ase
 			{
 				 $arr['msg'] = "This mail already exist";
@@ -71,20 +83,37 @@ class Registration extends CI_Controller
 
 
     }
+
+
+    public function getNativeId($mail,$password)
+    {
+        $this->load->model('user_model');
+        $nid=$this->user_model->getNativeId($mail,$password);
+        return $nid;
+    }
+
     public function test()
     {
+              $mail="azadsalam2611@gmail.com";
+              $password = "pass";
+              $name = "Azad";
 
-        	$message=$this->do_registration("bla","blabla","amisid","");
+              $message=$this->do_registration($name, $mail, $password, "");
 
 		if($message['success'])
 		{
                     $arr['success'] = "true";
                     $arr['msg'] ="Successfully Registered";
+
+                    
+                    $nid = $this->getNativeId($mail, $password);
+                    
+                    $arr['nid'] = $nid;
                 }
 		else
 		{
                         $arr['success'] = "false";
-
+                        $arr['nid'] = "";
 			if($message['already_exist'])//true mane age theke ase
 			{
 				 $arr['msg'] = "This mail already exist";
