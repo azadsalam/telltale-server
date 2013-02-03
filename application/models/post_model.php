@@ -393,8 +393,66 @@ class Post_model extends CI_Model
        
 
    }
+   
+   
+//// ******************************* Profile**********************************
 
+ function get_count_initiate_story($nid)//ekta nid dile she koita initiate korse tar count dibe
+ {
+	  
+       $query="SELECT COUNT(pid) as initiate_count FROM post WHERE nid=? AND parent IS NULL ";
+
+        $q=$this->db->query($query,$nid);
+
+		if($q->num_rows ==1)
+		{
+                       $row = $q->row();
+                       
+                       return $row->initiate_count;
+
+		}
+        else return 0;
+	 
+ }
  
+ function get_count_comment_in_story($nid)
+ {
+	 
+	  $query="SELECT COUNT(pid) as comment_count FROM post WHERE nid=? AND parent IS NOT NULL ";
+
+        $q=$this->db->query($query,$nid);
+
+		if($q->num_rows ==1)
+		{
+                       $row = $q->row();
+                       
+                       return $row->comment_count;
+
+		}
+        else return 0;
+	 
+	 
+ }
+ 
+ 
+ function get_count_appended_comment($nid)
+ {
+	 
+	  $query="SELECT COUNT(pid) as appended_count FROM post WHERE nid=? AND parent IS NOT NULL  AND isAppended = 1";
+
+        $q=$this->db->query($query,$nid);
+
+		if($q->num_rows ==1)
+		{
+                       $row = $q->row();
+                       
+                       return $row->appended_count;
+
+		}
+        else return 0;
+	 
+	 
+ }
   
 
     

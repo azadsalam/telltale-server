@@ -7,8 +7,7 @@ class Profile extends CI_Controller
     public function index()
     {
 		
-		
-		$this->get_point(1);
+		//$this->get_point(1);
 		
 		
 	}
@@ -31,7 +30,7 @@ class Profile extends CI_Controller
               print_r($arr);
 
         }
-        public function get_point($nid)
+     public function get_point($nid)
 	{
 		$this->load->model('user_model');
 		$point=$this->user_model->get_point($nid);
@@ -40,6 +39,25 @@ class Profile extends CI_Controller
 		return $point;
 		
 	}
+	public function count_initiate_comment_appended($nid)//ei $nid koita intiate korse koita comment korse koita append hoise return kore
+	{
+		
+		
+		$this->load->model('post_model');
+		$array['initiate_count']=$this->post_model->get_count_initiate_story($nid);
+		$array['comment_count']=$this->post_model->get_count_comment_in_story($nid);
+		$array['appended_count']=$this->post_model->get_count_appended_comment($nid);
+		
+		
+	//	print_r($array);
+		
+		return $array;
+		
+		
+		
+	}
+	
+	
 	
 	
 }

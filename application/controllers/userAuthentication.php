@@ -5,6 +5,9 @@ class UserAuthentication extends CI_Controller
         public function index()
         {
            // $this->load->view('initiate_view');
+		   
+		   
+		 //  echo $this->get_name(1);
         }
 
         // return nid if authenticated, else return null
@@ -29,6 +32,19 @@ class UserAuthentication extends CI_Controller
 
                           print_r(json_encode($ret));
         }
+		
+		
+		public function get_name($nid)
+		{
+			
+			$this->load->model('user_model');
+			$name=$this->user_model->getName($nid);
+			
+			return $name;
+			
+		}
+		
+		
 
 
 }
