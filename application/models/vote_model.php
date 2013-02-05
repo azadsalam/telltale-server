@@ -19,8 +19,22 @@ class Vote_model extends CI_Model
                        $row = $q->row();
                        return  $row->count;
 		}
-                return NULL;
+                return 0;
      }
+	 
+	 
+	 function insert_like_of_post($nid,$pid)
+	 {
+		 
+		     $this->db->set('pid',$pid);
+		 
+		     $this->db->set('nid',$nid);
+		    
+            
+             $this->db->insert('vote');
+			
+		 
+	}
 
 
 
