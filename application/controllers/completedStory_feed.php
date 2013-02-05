@@ -35,8 +35,9 @@ class CompletedStory_feed extends CI_Controller
                          $data=json_decode($json);
 
                           $pid=intval($data->{'pid'});
+                          $nid=intval($data->{'nid'});
 
-                          $array['post_array'] =  $this->getFullStory($pid);
+                          $array['post_array'] =  $this->getFullStoryWithLike($pid, $nid);
 
                           $tmp = $array['post_array'];
                           $count = count($tmp);
