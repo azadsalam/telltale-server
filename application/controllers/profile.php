@@ -19,21 +19,34 @@ class Profile extends CI_Controller
 	
         public function get_point_from_android()
         {
-            /* $json=$_SERVER['HTTP_JSON'];
+            ///*
+              $json=$_SERVER['HTTP_JSON'];
+             
              $data=json_decode($json);
 
               $nid=$data->{'nid'};
-*/
-              $nid=1;
+//*/
+              //$nid=1;
               $point = $this->get_point($nid);
-              
+              $name = $this->get_name($nid);
+              $arr = $this->count_initiate_comment_appended($nid);
               $arr['point'] = $point;
+              $arr['name'] = $name;
 
 
               $arr= json_encode($arr,JSON_FORCE_OBJECT);
               print_r($arr);
 
         }
+        public function get_name($nid)
+		{
+
+			$this->load->model('user_model');
+			$name=$this->user_model->getName($nid);
+
+			return $name;
+
+		}
      public function get_point($nid)
 	{
 		$this->load->model('user_model');
