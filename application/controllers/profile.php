@@ -7,9 +7,7 @@ class Profile extends CI_Controller
     public function index()
     {
 		
-		//$this->get_point(1);
 		
-		// echo strtotime("09 February 2013");
 		
 		
 		

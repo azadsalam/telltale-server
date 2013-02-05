@@ -5,7 +5,7 @@
  */
 class Vote_model extends CI_Model
 {
-     function get_vote_count($pid)
+     function get_vote_count($pid)///
      {
 
         $query="SELECT count(pid) AS count FROM vote WHERE pid=?";
@@ -23,7 +23,7 @@ class Vote_model extends CI_Model
      }
 	 
 	 
-	 function insert_like_of_post($nid,$pid)
+	 function insert_like_of_post($nid,$pid)// kono pid te kono nid eshe like dile sheta insert hbe
 	 {
 		 
 		     $this->db->set('pid',$pid);
