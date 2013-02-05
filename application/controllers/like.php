@@ -6,7 +6,8 @@ class Like extends CI_Controller
 
     public function index()
     {
-		$this->get_count_like_of_post(2);
+		$this->load->model('vote_model');
+	   echo $this->vote_model->like_exist(1,2);
 		
 		
 		

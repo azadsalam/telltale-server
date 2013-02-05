@@ -62,6 +62,11 @@ class PersonalCompletedStory_feed extends CI_Controller
                                                               //['index']['text']
                                                               //['index']['vote']
         }
+		
+		
+		
+		
+		
 
         function get_nameBynid($nid)
         {
