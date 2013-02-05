@@ -70,8 +70,9 @@ class PersonalOngoingStory_feed extends CI_Controller
                                                              
                                                               //['index']['vote']
         }
-
-       
+		
+		
+		
         function get_vote_count($pid)
         {
              $this->load->model('vote_model');

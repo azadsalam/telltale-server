@@ -7,7 +7,7 @@ class CompletedStory_feed extends CI_Controller
 	{
            // $this->load->view('completedStory_feed_view');
           // $this->load(0,5);
-           $this->getFullStory(37);
+           $this->loadWithLike(1,5,1);
 	}
 
 
@@ -92,6 +92,42 @@ class CompletedStory_feed extends CI_Controller
                                                               //['index']['name']
                                                               //['index']['vote']
         }
+		
+		
+		public function loadWithLike($start,$count,$nid) //what is $start??? $count??
+        {
+            
+
+
+            $this->load->model('post_model');
+			$this->load->model('vote_model');
+			
+            $completed_story=$this->post_model->get_pid_nid_text_AllCompleted_story($start,$count);
+
+          
+            for($i=$start;$i<$start+$count;$i++)
+            {
+                if($i<$start+count($completed_story))
+                {
+                   $completed_story[$i]['name']=$this->get_nameBynid($completed_story[$i]['nid']);
+                   $completed_story[$i]['vote']=$this->get_vote_count($completed_story[$i]['pid']);
+				    $completed_story[$i]['is_liked']=$this->vote_model->like_exist($nid,$completed_story[$i]['pid']);
+                }
+
+            }
+
+
+         // return $completed_story;
+          // print_r($completed_story);
+           return $completed_story;//array structure $completed_story['index']['pid']
+                                                              //['index']['nid']
+                                                              //['index']['text']
+                                                              //['index']['name']
+                                                              //['index']['vote']
+															  //['index']['is_liked']
+        }
+
+		
 
         function get_nameBynid($nid)
         {
@@ -124,6 +160,30 @@ class CompletedStory_feed extends CI_Controller
                                                               //['index']['text']
                                                               //['index']['name']
                                                               //['index']['vote']
+        
+     }
+	 
+	 
+	 function getFullStoryWithLike($root,$nid)
+     {
+         $this->load->model('post_model');
+		  $this->load->model('vote_model');
+         $post_array=$this->post_model->get_upto_completed_part_ofStory($root);
+        // print_r($post_array);
+         for($i=0;$i<count($post_array);$i++)
+         {
+             $post_array[$i]['name']=$this->get_nameBynid($post_array[$i]['nid']);
+             $post_array[$i]['vote']=$this->get_vote_count($post_array[$i]['pid']);
+			 $post_array[$i]['is_liked']=$this->vote_model->like_exist($nid,$post_array[$i]['pid']);
+         }
+
+        // print_r($post_array);
+       return $post_array;//array structure        $post_array['index']['pid']
+                                                              //['index']['nid']
+                                                              //['index']['text']
+                                                              //['index']['name']
+                                                              //['index']['vote']
+															  //['index']['is_liked']
         
      }
 

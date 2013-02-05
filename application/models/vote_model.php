@@ -23,6 +23,25 @@ class Vote_model extends CI_Model
      }
 	 
 	 
+	 function like_exist($nid,$pid)
+	 {
+		 
+		  $query="SELECT pid  FROM vote WHERE pid=? AND nid=?";
+		  $array['pid']=$pid;
+		  $array['nid']=$nid;
+
+
+
+        $q=$this->db->query($query,$array);
+
+		if($q->num_rows == 1)
+		{
+                      return 1;
+		}
+                return 0;
+		 
+	 }
+	 
 	 function insert_like_of_post($nid,$pid)// kono pid te kono nid eshe like dile sheta insert hbe
 	 {
 		 
