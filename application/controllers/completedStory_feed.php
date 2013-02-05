@@ -52,7 +52,7 @@ class CompletedStory_feed extends CI_Controller
             
             $pid= 44;
 
-  $array['post_array'] =  $this->getFullStory($pid);
+                         $array['post_array'] =  $this->getFullStory($pid);
 
                           $tmp = $array['post_array'];
                           $count = count($tmp);
