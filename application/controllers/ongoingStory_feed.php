@@ -69,7 +69,7 @@ class OngoingStory_feed extends CI_Controller
 
         public function testStory()
         {
-            $array = $this->getFullStory2(17);
+            $array = $this->getFullStoryWithLike(2,1);
 
 
             $tmp = $array['appended_post_array'];
