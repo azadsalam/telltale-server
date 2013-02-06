@@ -282,11 +282,11 @@ class OngoingStory_feed extends CI_Controller
          {
              $Unappended_part_array[$i]['name']=$this->get_nameBynid($Unappended_part_array[$i]['nid']);
              $Unappended_part_array[$i]['vote']=$this->get_vote_count($Unappended_part_array[$i]['pid']);
-<<<<<<< HEAD
-			 $Unappended_part_array[$i]['is_liked']=$this->vote_model->like_exist($nid,$Unappended_part_array[$i]['pid']);
-=======
-		$Unappended_part_array[$i]['is_liked']=$this->vote_model->like_exist($nid,$Unappended_part_array[$i]['pid']);
->>>>>>> fcfc3269e799c6a056807049a42b687a7a7fb6e3
+
+	     $Unappended_part_array[$i]['is_liked']=$this->vote_model->like_exist($nid,$Unappended_part_array[$i]['pid']);
+
+		
+
          }//array structure               $Unappended_part_array['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']
