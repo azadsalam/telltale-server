@@ -6,8 +6,8 @@ class Like extends CI_Controller
 
     public function index()
     {
-		$this->load->model('vote_model');
-	   echo $this->vote_model->like_exist(1,2);
+		//$this->load->model('vote_model');
+	    //$this->vote_model->insert_like_of_post(2,37);
 		
 		
 		
@@ -19,7 +19,7 @@ class Like extends CI_Controller
 	    
 		$count=$this->vote_model->get_vote_count($pid);
 		
-		echo $count;
+		//echo $count;
 		
 		
 	}

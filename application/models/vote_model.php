@@ -45,12 +45,17 @@ class Vote_model extends CI_Model
 	 function insert_like_of_post($nid,$pid)// kono pid te kono nid eshe like dile sheta insert hbe
 	 {
 		 
+		 if(!$this->like_exist($nid,$pid))
+		 {
+			
 		     $this->db->set('pid',$pid);
 		 
 		     $this->db->set('nid',$nid);
 		    
-            
              $this->db->insert('vote');
+			 
+		 }
+		 
 			
 		 
 	}

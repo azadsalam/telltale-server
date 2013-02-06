@@ -7,7 +7,7 @@ class CompletedStory_feed extends CI_Controller
 	{
            // $this->load->view('completedStory_feed_view');
           // $this->load(0,5);
-           $this->loadWithLike(1,5,1);
+         //  $this->loadWithLike(1,5,1);
 	}
 
 
