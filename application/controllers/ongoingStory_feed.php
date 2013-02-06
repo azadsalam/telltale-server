@@ -9,17 +9,18 @@ class OngoingStory_feed extends CI_Controller
             $this->load->view('story_feed_view');
 
 
-          $array =  $this->getFullStory2(17);
-          $tmp = $array['appended_post_array'];
-          $count = count($tmp);
-          $array['appended_post_count'] = $count;
-          //$array['Unappended_part_array']
-          $tmp = $array['Unappended_part_array'];
-          $count = count($tmp);
-          $array['Unappended_part_count'] = $count;
+                        $array =  $this->getFullStoryWithLike(2,1);
+ //$array =  $this->getFullStory2(1);
 
-          print_r(json_encode($array,JSON_FORCE_OBJECT));
+                          $tmp = $array['appended_post_array'];
+                          $count = count($tmp);
+                          $array['appended_post_count'] = $count;
+                          //$array['Unappended_part_array']
+                          $tmp = $array['Unappended_part_array'];
+                          $count = count($tmp);
+                          $array['Unappended_part_count'] = $count;
 
+                          print_r(json_encode($array,JSON_FORCE_OBJECT));
           echo "<br/><br/><br/><br/>";
           print_r($array);
 
@@ -50,9 +51,10 @@ class OngoingStory_feed extends CI_Controller
                          $data=json_decode($json);
                          
                           $pid=intval($data->{'pid'});
+                          $nid=intval($data->{'nid'});
                           
-                          $array =  $this->getFullStory2($pid);
-
+                          $array =  $this->getFullStoryWithLike($pid, $nid);
+//$array = $this->getFullStory2($pid);
 
                           $tmp = $array['appended_post_array'];
                           $count = count($tmp);
@@ -280,7 +282,11 @@ class OngoingStory_feed extends CI_Controller
          {
              $Unappended_part_array[$i]['name']=$this->get_nameBynid($Unappended_part_array[$i]['nid']);
              $Unappended_part_array[$i]['vote']=$this->get_vote_count($Unappended_part_array[$i]['pid']);
+<<<<<<< HEAD
 			 $Unappended_part_array[$i]['is_liked']=$this->vote_model->like_exist($nid,$Unappended_part_array[$i]['pid']);
+=======
+		$Unappended_part_array[$i]['is_liked']=$this->vote_model->like_exist($nid,$Unappended_part_array[$i]['pid']);
+>>>>>>> fcfc3269e799c6a056807049a42b687a7a7fb6e3
          }//array structure               $Unappended_part_array['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']

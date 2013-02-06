@@ -7,7 +7,7 @@ class CompletedStory_feed extends CI_Controller
 	{
            // $this->load->view('completedStory_feed_view');
           // $this->load(0,5);
-           $this->loadWithLike(1,5,1);
+         //  $this->loadWithLike(1,5,1);
 	}
 
 
@@ -35,8 +35,9 @@ class CompletedStory_feed extends CI_Controller
                          $data=json_decode($json);
 
                           $pid=intval($data->{'pid'});
+                          $nid=intval($data->{'nid'});
 
-                          $array['post_array'] =  $this->getFullStory($pid);
+                          $array['post_array'] =  $this->getFullStoryWithLike($pid, $nid);
 
                           $tmp = $array['post_array'];
                           $count = count($tmp);
@@ -52,7 +53,7 @@ class CompletedStory_feed extends CI_Controller
             
             $pid= 44;
 
-  $array['post_array'] =  $this->getFullStory($pid);
+                         $array['post_array'] =  $this->getFullStory($pid);
 
                           $tmp = $array['post_array'];
                           $count = count($tmp);
