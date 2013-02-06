@@ -6,23 +6,20 @@ class OngoingStory_feed extends CI_Controller
 	public function index()
 	{
 		 //$this->loadWithLike(1,10,1);
-            $this->load->view('story_feed_view');
+           // $this->load->view('story_feed_view');
 
 
-                        $array =  $this->getFullStoryWithLike(2,1);
+                        
  //$array =  $this->getFullStory2(1);
 
-                          $tmp = $array['appended_post_array'];
-                          $count = count($tmp);
-                          $array['appended_post_count'] = $count;
-                          //$array['Unappended_part_array']
-                          $tmp = $array['Unappended_part_array'];
-                          $count = count($tmp);
-                          $array['Unappended_part_count'] = $count;
-
-                          print_r(json_encode($array,JSON_FORCE_OBJECT));
-          echo "<br/><br/><br/><br/>";
-          print_r($array);
+                          $arr = $this->load(0,5);
+                          $i=0;
+                          foreach($arr as $a)
+                          {
+                              $ret[$i] = $a;
+                              $i++;
+                          }
+                          print_r(json_encode($ret,JSON_FORCE_OBJECT));
 
 	}
 
@@ -39,10 +36,10 @@ class OngoingStory_feed extends CI_Controller
                           $i=$start;
                           foreach($arr as $a)
                           {
-                              $ret["R".$i] = $a;
+                              $ret[$i] = $a;
                               $i++;
                           }
-                          print_r(json_encode($ret));
+                          print_r(json_encode($ret,JSON_FORCE_OBJECT));
         }
 
          public function getFullStoryFromAndroid()
