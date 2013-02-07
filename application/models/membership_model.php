@@ -10,7 +10,7 @@ class Membership_model extends CI_Model
 	 function row_exist($grpid,$nid)
 	 {
 		 
-		  $query="SELECT grpid  FROM groupspace WHERE grpid=? AND nid=?";
+		  $query="SELECT grpid  FROM membership WHERE grpid=? AND nid=?";
 		  $array['grpid']=$grpid;
 		  $array['nid']=$nid;
 
@@ -44,6 +44,28 @@ class Membership_model extends CI_Model
 		 else return 0;
 		
 	}
+	
+	
+	function delete_member($grpid,$nid)
+	{
+		 $query="SELECT grpid  FROM membership WHERE grpid=? AND nid=?";
+		  $array['grpid']=$grpid;
+		  $array['nid']=$nid;
+
+
+
+        $q=$this->db->query($query,$array);
+
+		if($q->num_rows == 1)
+		{
+			 $this->db->delete('membership', array('grpid' => $grpid ,'nid'=>$nid));
+             return 1;
+		}
+        return 0;
+		 
+		 
+	}
+                 
 	
 	
 	

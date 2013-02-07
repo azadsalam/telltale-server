@@ -9,6 +9,7 @@ class Group extends CI_Controller
 		
 		
 		//$this->list_group(2);
+		$this->detach_post_from_group(1);
 		
 		
 		
@@ -43,6 +44,19 @@ class Group extends CI_Controller
 		
 		
 	}
+	
+	public function attach_post_to_group($pid,$grpid)
+	{
+		$this->load->model('post_model');
+		$this->post_model->attach_post_to_group($pid,$grpid);
+	}
+	
+	public function detach_post_from_group($pid)//set null
+	{
+		$this->load->model('post_model');
+		$this->post_model->detach_post_from_group($pid);
+	}
+	
 	
 	
 }

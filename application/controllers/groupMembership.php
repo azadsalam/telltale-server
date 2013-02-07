@@ -8,7 +8,7 @@ class GroupMembership extends CI_Controller
     {
 		
 		
-		echo $this->add_member(2,3);
+		echo $this->delete_member(2,3);
 		
 		
 		
@@ -20,6 +20,16 @@ class GroupMembership extends CI_Controller
 		
 		 $this->load->model('membership_model');
 		 if($this->membership_model->add_member($grpid,$nid))
+		  return 1;
+		 else return 0; 
+		
+		
+	}
+	
+	public function delete_member($grpid,$nid)//success hole return 1 or return 0 mne nai table e
+	{
+		 $this->load->model('membership_model');
+		 if($this->membership_model->delete_member($grpid,$nid))
 		  return 1;
 		 else return 0; 
 		

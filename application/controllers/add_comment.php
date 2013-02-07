@@ -6,7 +6,7 @@ class Add_comment extends CI_Controller
 
     public function index()
 	{
-           
+       // $this->add_comment_to_story(3,NULL,'Hunny Bunny',0);   
 			 
 			   
 			

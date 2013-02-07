@@ -59,8 +59,18 @@ postModification name ekta controller shekhane ektai function oikhane pid pathal
 ****group****
 schema r jonno telltale schema.txt dekho
 
+do this: ALTER TABLE post ADD grpid integer
+
 See group controller for details ki return kore
 1. function create_group($name,$nid) 
 2. function delete_group($grpid)
 3.function list_group($nid)
+4.function attach_post_to_group($pid,$grpid)
+5.function detach_post_from_group($pid)
 
+
+***membership*****
+schema r jonno telltale schema.txt dekho
+See groupMembership controller for details ki return kore
+1.public function add_member($grpid,$nid)
+2.public function delete_member($grpid,$nid)

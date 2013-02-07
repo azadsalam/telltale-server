@@ -137,6 +137,20 @@ class Post_model extends CI_Model
    {
        $this->db->query('UPDATE post SET  isAppended = 1 WHERE pid = ?', $pid);
    }
+   
+   function attach_post_to_group($pid,$grpid)
+   {
+	   $array['grpid']=$grpid;
+	   $array['pid']=$pid;
+	   $this->db->query('UPDATE post SET  grpid = ? WHERE pid = ?',$array);
+   }
+   
+   function   detach_post_from_group($pid)
+   {
+	   
+	   $this->db->query('UPDATE post SET  grpid = NULL WHERE pid = ?',$pid);
+   }
+ 
 
    public function mark_isEnd_true($pid)
    {
