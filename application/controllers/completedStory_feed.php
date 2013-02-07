@@ -8,6 +8,7 @@ class CompletedStory_feed extends CI_Controller
            // $this->load->view('completedStory_feed_view');
           // $this->load(0,5);
          //  $this->loadWithLike(1,5,1);
+		// $this->getFullStory(37);
 	}
 
 
@@ -155,8 +156,8 @@ class CompletedStory_feed extends CI_Controller
              $post_array[$i]['vote']=$this->get_vote_count($post_array[$i]['pid']);
          }
 
-         return ($post_array);
-      //  return $post_array;//array structure        $post_array['index']['pid']
+        // print_r($post_array);
+        return $post_array;//array structure        $post_array['index']['pid']
                                                               //['index']['nid']
                                                               //['index']['text']
                                                               //['index']['name']

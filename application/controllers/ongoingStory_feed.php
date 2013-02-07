@@ -5,14 +5,14 @@ class OngoingStory_feed extends CI_Controller
 
 	public function index()
 	{
-		 //$this->loadWithLike(1,10,1);
+		  // $this->getFullStoryWithLike(34,1);
            // $this->load->view('story_feed_view');
 
 
                         
  //$array =  $this->getFullStory2(1);
 
-                          $arr = $this->load(0,5);
+                         $arr = $this->load(0,5);
                           $i=0;
                           foreach($arr as $a)
                           {
@@ -297,7 +297,7 @@ class OngoingStory_feed extends CI_Controller
          $ongoing_story['appended_post_array']=$appended_post_array;
          $ongoing_story['Unappended_part_array']= $Unappended_part_array;
 
-       //  print_r($ongoing_story);
+       // print_r($ongoing_story);
         return $ongoing_story;
 
      }

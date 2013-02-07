@@ -7,6 +7,57 @@
 class Post_model extends CI_Model
 {
 
+
+   function post_delete($pid)
+   {
+	   $parent=$pid;
+	   
+	   $this->db->delete('post', array('pid' => $pid));
+	   
+	   
+	   
+	   while($parent!= NULL)
+	   {
+		  
+		   
+		   $query="SELECT pid  FROM post WHERE isAppended = 1 AND parent = ? ";
+			
+		   $q=$this->db->query($query,$parent);
+	
+			if($q->num_rows == 1)
+			{
+					$row = $q->row();
+					 
+					$new_parent= $row->pid;
+					
+			}
+			else $new_parent=NULL;
+			
+		    
+			$query="SELECT pid FROM post WHERE parent = ?";
+			$q=$this->db->query($query,$parent);
+			   if($q->num_rows()>0)
+			   {
+				foreach($q->result() as $row)
+				{
+					//echo $row->pid;
+					$this->db->delete('post', array('pid' => $row->pid)); 
+				}
+			   }
+			
+		     
+			
+	
+	     $parent=$new_parent;
+			
+					   
+		   
+		   
+	   }
+	   
+	   
+	   
+   }
     //inserts the first post into database\
 	
 	public function find_root_contributer_of_story($pid)///ei pid ta last post er pid..ekta array reutrn korbe jar modhe shb contributer r nid thakbe

@@ -49,3 +49,7 @@ userAuthentiation
 ->
 input : nid
 output : name
+
+
+*****post delete*****
+postModification name ekta controller shekhane ektai function oikhane pid pathale oi pid shoho nicher shb pid del kore dei
