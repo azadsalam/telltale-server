@@ -8,7 +8,7 @@ class Group extends CI_Controller
     {
 		
 		
-		$this->list_group(2);
+		//$this->list_group(2);
 		
 		
 		
