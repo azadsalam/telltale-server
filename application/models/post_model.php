@@ -165,7 +165,7 @@ class Post_model extends CI_Model
         //$query="SELECT pid,nid,text FROM post WHERE parent = ?";
         $c=0;
         $q=$this->db->query($query);
-              if($q->num_rows()>0)
+         if($q->num_rows()>0)
 		{
 			foreach($q->result() as $row)
 			{

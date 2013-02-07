@@ -62,3 +62,28 @@ SELECT *
 FROM  `post` 
 ORDER BY TIMESTAMP DESC 
 LIMIT 0 , 3
+
+CREATE TABLE groupspace(
+        grpid                INT NOT NULL AUTO_INCREMENT,
+		name                VARCHAR(50) NOT NULL,
+		nid                 INT NOT NULL,
+        PRIMARY KEY(grpid),
+		FOREIGN KEY (nid) REFERENCES User(nid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE	
+);
+
+membership (grpid,nid)
+
+CREATE TABLE membership (
+        grpid                 INT NOT NULL,
+		nid                 INT NOT NULL,
+        PRIMARY KEY(pid,nid),
+		FOREIGN KEY (grpid) REFERENCES  groupstory(grpid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+		FOREIGN KEY (nid) REFERENCES User(nid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+		
+);

@@ -53,3 +53,14 @@ output : name
 
 *****post delete*****
 postModification name ekta controller shekhane ektai function oikhane pid pathale oi pid shoho nicher shb pid del kore dei
+
+
+
+****group****
+schema r jonno telltale schema.txt dekho
+
+See group controller for details ki return kore
+1. function create_group($name,$nid) 
+2. function delete_group($grpid)
+3.function list_group($nid)
+
