@@ -78,8 +78,8 @@ membership (grpid,nid)
 CREATE TABLE membership (
         grpid                 INT NOT NULL,
 		nid                 INT NOT NULL,
-        PRIMARY KEY(pid,nid),
-		FOREIGN KEY (grpid) REFERENCES  groupstory(grpid)
+        PRIMARY KEY(grpid,nid),
+		FOREIGN KEY (grpid) REFERENCES  groupspace(grpid)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 		FOREIGN KEY (nid) REFERENCES User(nid)

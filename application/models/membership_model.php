@@ -1,10 +1,52 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-</head>
+<?php
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+class Membership_model extends CI_Model
+{
+	
+	
+	 function row_exist($grpid,$nid)
+	 {
+		 
+		  $query="SELECT grpid  FROM groupspace WHERE grpid=? AND nid=?";
+		  $array['grpid']=$grpid;
+		  $array['nid']=$nid;
 
-<body>
-</body>
-</html>
+
+
+        $q=$this->db->query($query,$array);
+
+		if($q->num_rows == 1)
+		{
+                      return 1;
+		}
+                return 0;
+		 
+	 }
+	
+	
+	
+	function add_member($grpid, $nid)
+	{
+		if(!$this->row_exist($grpid,$nid))
+		 {
+		     $this->db->set('grpid',$grpid);
+		 
+		     $this->db->set('nid',$nid);
+		    
+             $this->db->insert('membership');
+			 
+			 return 1;
+		
+		 }
+		 else return 0;
+		
+	}
+	
+	
+	
+	
+	
+}
