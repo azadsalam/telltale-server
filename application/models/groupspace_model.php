@@ -37,7 +37,9 @@ class Groupspace_model extends CI_Model
 		    
              $this->db->insert('groupspace');
 			 
-			 return 1;
+			 
+			 
+			 return $this->db->insert_id();
 		
 		 }
 		 else return 0;
