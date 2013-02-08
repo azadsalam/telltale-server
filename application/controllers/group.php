@@ -79,10 +79,10 @@ class Group extends CI_Controller
 		 else return 0; 
 	}
 	
-	public function list_group($nid)//ei owner r group r list return korbe r na thakle NULL return korbe
+	public function list_of_owned_group($nid)//ei owner kn kn group create korse group r list return korbe r na thakle NULL return korbe
 	{
 		$this->load->model('groupspace_model');
-		$data=$this->groupspace_model->count_group($nid);
+		$data=$this->groupspace_model->list_group($nid);
 		//print_r($data);
 		
 		return $data;//$data['index']['grpid']
