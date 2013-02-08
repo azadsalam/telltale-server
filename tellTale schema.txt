@@ -73,7 +73,6 @@ CREATE TABLE groupspace(
 		ON UPDATE CASCADE	
 );
 
-membership (grpid,nid)
 
 CREATE TABLE membership (
         grpid                 INT NOT NULL,
@@ -87,3 +86,7 @@ CREATE TABLE membership (
 		ON UPDATE CASCADE
 		
 );
+
+ALTER TABLE post ADD grpid integer
+
+membership (grpid,nid)
