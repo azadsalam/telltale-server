@@ -4,6 +4,7 @@ class Initiate extends CI_Controller
 {
         public function index()
         {
+			//$this->initiateStory(1,'hello id2');
             //$this->load->view('initiate_view');
 			
 			//$this->initiateStory(2,'point point point..');
@@ -45,9 +46,10 @@ class Initiate extends CI_Controller
           {
                 $this->load->model('post_model');
                 $parent=NULL;
-                $this->post_model->insertPost($nid,$parent,$text);
+                $pid = $this->post_model->insertPost($nid,$parent,$text);
 				
-				$this->point_for_initiate_story($nid);
+				 $this->point_for_initiate_story($nid);
+				 return $pid;
 				
           }
 		  

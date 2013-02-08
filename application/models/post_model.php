@@ -131,6 +131,8 @@ class Post_model extends CI_Model
             $this->db->set('parent',$parent);
             $this->db->set('text',$text);
             $this->db->insert('post');
+			
+			return $this->db->insert_id();
     }
 
    public function mark_is_append_true($pid)

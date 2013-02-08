@@ -6,7 +6,7 @@ class GroupMembership extends CI_Controller
 
     public function index()
     {
-		
+		//echo $this->add_member(2,'isshoval@gmail.com');
 		
 		//echo $this->list_of_group(3);
 		
@@ -35,24 +35,36 @@ class GroupMembership extends CI_Controller
 
               echo "remove $grpid -> $mail";
         }
-        public function add_member($grpid,$nid)//group grpid+nid dile notun row khulbe//group ekoi nid+grpid agei exist korle return 0 or success 																                                               //hole return 1
+     public function add_member($grpid,$mailid)//group grpid+nid dile notun row khulbe//group ekoi nid+grpid agei exist korle return 0 or success 																                                               //hole return 1
 	{
+	    $this->load->model('user_model');
+		$nid=$this->user_model-> get_native_id($mailid);
 		
+		if($nid != NULL)
+		{
 		
 		 $this->load->model('membership_model');
 		 if($this->membership_model->add_member($grpid,$nid))
 		  return 1;
 		 else return 0; 
+		}
 		
 		
 	}
 	
-	public function delete_member($grpid,$nid)//success hole return 1 or return 0 mne nai table e
+	public function delete_member($grpid,$mailid)//success hole return 1 or return 0 mne nai table e
 	{
+		 $this->load->model('user_model');
+		 $nid=$this->user_model->get_native_id($mailid);
+		
+		if($nid != NULL)
+		{
+		 
 		 $this->load->model('membership_model');
 		 if($this->membership_model->delete_member($grpid,$nid))
 		  return 1;
 		 else return 0; 
+		}
 		
 		
 	}
