@@ -62,7 +62,7 @@ class Groupspace_model extends CI_Model
 		
 	}
 	
-	function count_group($nid)
+	function list_of_owned_group($nid)
 	{
 		 $query="SELECT grpid,name FROM groupspace WHERE nid=?";
 
@@ -90,6 +90,21 @@ class Groupspace_model extends CI_Model
 		
 	}
 	
+	function get_name($grpid)
+	{
+		 $query="SELECT name  FROM groupspace WHERE  grpid=?";
+		
+		$q=$this->db->query($query,$grpid);
+
+		if($q->num_rows == 1)
+		{
+			$row = $q->row();
+			return $row->name;
+		}
+        return 0;
+		
+		
+	}
 	
 	
 	

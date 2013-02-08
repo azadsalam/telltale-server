@@ -65,6 +65,35 @@ class Membership_model extends CI_Model
 		 
 		 
 	}
+	
+	
+	function list_of_group($nid)
+	{
+		
+		 $query="SELECT grpid FROM membership WHERE nid=?";
+
+
+		 $index=-1;	
+         $q=$this->db->query($query,$nid);
+		 
+
+		if($q->num_rows()>0)
+		{
+			foreach($q->result() as $row)
+			{
+				$index++;
+				$data[$index]['grpid']=$row->grpid;
+				
+				
+			}
+			
+			return $data;
+		}
+		
+		else return NULL;
+                 
+		
+	}
                  
 	
 	

@@ -8,7 +8,7 @@ class GroupMembership extends CI_Controller
     {
 		
 		
-		echo $this->delete_member(2,3);
+		//echo $this->list_of_group(3);
 		
 		
 		
@@ -32,6 +32,29 @@ class GroupMembership extends CI_Controller
 		 if($this->membership_model->delete_member($grpid,$nid))
 		  return 1;
 		 else return 0; 
+		
+		
+	}
+	
+	public function list_of_group($nid)//ami kon kon group e asi tar list 
+	{
+		
+		$this->load->model('membership_model');
+		$data=$this->membership_model->list_of_group($nid);
+		
+		$this->load->model('groupspace_model');
+		
+		for($index=0;$index<count($data);$index++)
+		{
+			
+			$data[$index]['name']=$this->groupspace_model->get_name($data[$index]['grpid']);
+		}
+		
+		
+		//print_r($data);
+		
+		return $data;//$data['index']['grpid']
+					//	$data['index']['name']
 		
 		
 	}

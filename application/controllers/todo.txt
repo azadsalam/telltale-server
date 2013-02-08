@@ -64,7 +64,7 @@ do this: ALTER TABLE post ADD grpid integer
 See group controller for details ki return kore
 1. function create_group($name,$nid) 
 2. function delete_group($grpid)
-3.function list_group($nid)
+3.function list_of_owned_group($nid)//ei owner kn kn group create korse group r list return korbe r na thakle NULL return korbe
 4.function attach_post_to_group($pid,$grpid)
 5.function detach_post_from_group($pid)
 
@@ -74,3 +74,4 @@ schema r jonno telltale schema.txt dekho
 See groupMembership controller for details ki return kore
 1.public function add_member($grpid,$nid)
 2.public function delete_member($grpid,$nid)
+3.public function list_of_group($nid)//ami kon kon group e asi tar list 

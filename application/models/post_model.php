@@ -207,6 +207,51 @@ class Post_model extends CI_Model
                else return;
         
     }
+	
+	
+	function get_ongoing_stories_of_this_group($start,$count,$grpid)
+	{
+		
+		 $query="SELECT pid,nid,text FROM post WHERE parent IS NULL AND pid NOT IN
+            (SELECT pid FROM published)ORDER BY timeStamp DESC ";
+
+        //$query="SELECT pid,nid,text FROM post WHERE parent = ?";
+        $c=0;
+        $q=$this->db->query($query);
+         if($q->num_rows()>0)
+		{
+			foreach($q->result() as $row)
+			{
+                            
+                            if($c>=$start && $c<$start+$count)
+                            {
+
+                             $data[$c]['pid']=$row->pid;
+                             $data[$c]['nid']=$row->nid;
+                             $data[$c]['text']=$row->text;
+                            }
+                           if($c>=$start+$count)
+                            {
+                               if(isset($data))
+                                return $data;
+                            }
+                            $c++;
+
+			}
+
+
+		}else return;
+               if (isset($data))
+                 return $data;
+               else return;
+        
+		
+		
+		
+		
+		
+	}
+	
 
 
     function get_ongoing_personalStory($start,$count,$nid)// ekta nidrishto nid er jonno tar shb ongoing story er feed
