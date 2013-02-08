@@ -9,8 +9,8 @@ class Group extends CI_Controller
 		
 		
 		//$this->list_group(2);
-		$this->detach_post_from_group(1);
-		
+		//$this->detach_post_from_group(1);
+		$this->list_of_owned_group(4);
 		
 		
 	}
@@ -61,12 +61,18 @@ class Group extends CI_Controller
             $this->delete_group($grpid);
         }
 
-        public function create_group($name,$nid)//group name+ creator r nid//group ekoi nid+name agei exist korle return false or success hole 				                                                  return true
+   public function create_group($name,$nid)//group name+ creator r nid//group ekoi nid+name agei exist korle return false or success hole 				                                                  return true
 	{
 		
 		$this->load->model('groupspace_model');
-		 if($this->groupspace_model->create_group($name,$nid))
-		  return 1;
+		$grpid=$this->groupspace_model->create_group($name,$nid);
+		 if($grpid != 0)
+		 {
+			 $this->load->model('membership_model');
+			 $dummy=$this->membership_model->add_member($grpid,$nid);
+			 
+		   return 1;
+		 }
 		 else return 0; 
 	}
 	
@@ -83,9 +89,9 @@ class Group extends CI_Controller
 	{
 		$this->load->model('groupspace_model');
 		$data=$this->groupspace_model->list_of_owned_group($nid);
-		//print_r($data);
+		print_r($data);
 		
-		return $data;//$data['index']['grpid']
+		//return $data;//$data['index']['grpid']
 					//	$data['index']['name']
 		
 	}
