@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+pid<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Group extends CI_Controller
 {
@@ -89,8 +89,19 @@ class Group extends CI_Controller
 					//	$data['index']['name']
 		
 	}
-	
-	public function attach_post_to_group($pid,$grpid)
+
+        public function attach()
+        {
+                   $json=$_SERVER['HTTP_JSON'];
+             $data=json_decode($json);
+
+
+              $pid=$data->{'pid'};
+              $grpid = intval($data->{'grpid'});
+
+              $this->attach_post_to_group($pid, $grpid);
+        }
+        public function attach_post_to_group($pid,$grpid)
 	{
 		$this->load->model('post_model');
 		$this->post_model->attach_post_to_group($pid,$grpid);
