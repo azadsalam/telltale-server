@@ -22,7 +22,8 @@ class GroupMembership extends CI_Controller
               $grpid=intval($data->{'grpid'});
               $mail = $data->{'mail'};
 
-              echo "add $grpid -> $mail";
+              $this->add_member($grpid, $mail);
+              //echo "add $grpid -> $mail";
 
         }
         public function remove_member_from_android()
@@ -33,7 +34,9 @@ class GroupMembership extends CI_Controller
               $grpid=intval($data->{'grpid'});
               $mail = $data->{'mail'};
 
-              echo "remove $grpid -> $mail";
+              
+              $this->delete_member($grpid, $mail);
+//              echo "remove $grpid -> $mail";
         }
      public function add_member($grpid,$mailid)//group grpid+nid dile notun row khulbe//group ekoi nid+grpid agei exist korle return 0 or success 																                                               //hole return 1
 	{

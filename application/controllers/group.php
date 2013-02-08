@@ -1,4 +1,4 @@
-pid<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Group extends CI_Controller
 {
@@ -9,9 +9,22 @@ class Group extends CI_Controller
 		
 		
 		//$this->list_group(2);
-		$this->detach_post_from_group(1);
-		
-		
+
+        $nid= 1;
+
+         $arr = $this->list_of_owned_group($nid);
+
+         print_r($arr);
+
+            $tmp['count'] = count($arr);
+            $tmp['data' ] = $arr;
+
+            echo "<br/><br/><br/><br/>NOOO";
+              $data = $this->list_group_helper($nid);
+
+
+                print_r(json_encode($data, JSON_FORCE_OBJECT));
+
 		
 	}
 
@@ -30,20 +43,29 @@ class Group extends CI_Controller
 
         public function list_group_from_android()
         {
-
+            
              $json=$_SERVER['HTTP_JSON'];
              $data=json_decode($json);
 
               $nid=intval($data->{'nid'});
 
-              $data = $this->list_group_helper($nid);
+//                $nid=1;
+ //             $data = $this->list_group_helper($nid);
+
+                $arr = $this->list_of_owned_group($nid);
+
+   //         print_r($arr);
+
+             $tmp['count'] = count($arr);
+             $tmp['data' ] = $arr;
               
-                print_r(json_encode($data, JSON_FORCE_OBJECT));
+                print_r(json_encode($tmp, JSON_FORCE_OBJECT));
         }
         public function list_group_helper($nid)
         {
             $arr = $this->list_of_owned_group($nid);
 
+   //         print_r($arr);
 
             $tmp['count'] = count($arr);
             $tmp['data' ] = $arr;
@@ -87,8 +109,8 @@ class Group extends CI_Controller
 		
 		return $data;//$data['index']['grpid']
 					//	$data['index']['name']
-		
-	}
+                                        //
+           }
 
         public function attach()
         {
