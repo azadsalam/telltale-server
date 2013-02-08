@@ -6,11 +6,11 @@ class OngoingStory_feed extends CI_Controller
 	public function index()
 	{
 		  // $this->getFullStoryWithLike(34,1);
-           // $this->load->view('story_feed_view');
+          // $this->load->view('story_feed_view');
 
-
+         // $this->ongoing_stories_of_this_group(0,5,2);
                         
- //$array =  $this->getFullStory2(1);
+         //$array =  $this->getFullStory2(1);
 
                          $arr = $this->load(0,5);
                           $i=0;

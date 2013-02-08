@@ -5,6 +5,8 @@ class CompletedStory_feed extends CI_Controller
 
 	public function index()
 	{
+		//$this->completed_stories_of_this_group(0,3,2);
+		  
            // $this->load->view('completedStory_feed_view');
           // $this->load(0,5);
          //  $this->loadWithLike(1,5,1);
@@ -94,6 +96,37 @@ class CompletedStory_feed extends CI_Controller
                                                               //['index']['name']
                                                               //['index']['vote']
         }
+		
+		
+		
+		public function completed_stories_of_this_group($start,$count,$grpid)
+		{
+			
+            $this->load->model('post_model');
+            $completed_story=$this->post_model->get_completed_stories_of_this_group($start,$count,$grpid);
+
+          
+            for($i=$start;$i<$start+$count;$i++)
+            {
+                if($i<$start+count($completed_story))
+                {
+                   $completed_story[$i]['name']=$this->get_nameBynid($completed_story[$i]['nid']);
+                   $completed_story[$i]['vote']=$this->get_vote_count($completed_story[$i]['pid']);
+                }
+
+            }
+
+
+         // return $completed_story;
+           // print_r($completed_story);
+           return $completed_story;//array structure $completed_story['index']['pid']
+                                                              //['index']['nid']
+                                                              //['index']['text']
+                                                              //['index']['name']
+                                                              //['index']['vote']
+			
+		}
+
 		
 		
 		public function loadWithLike($start,$count,$nid) //what is $start??? $count??
