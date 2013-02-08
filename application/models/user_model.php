@@ -10,6 +10,23 @@ class User_model extends CI_Model
         return $str;
          //return sha1($str.$this->config->item('encryption_key'));
     }
+	
+   function get_native_id($mailid)
+   {
+	   $this->db->select('nid');
+       $this->db->where('mail', $mailid);
+	   
+	   $query = $this->db->get('user');
+
+		if($query->num_rows == 1)
+		{
+                       $row = $query->row();
+                       return  $row->nid;
+		}
+                return NULL;
+	   
+	   
+   }
 
     public function getNativeId($mail,$password)
     {

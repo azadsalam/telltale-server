@@ -4,8 +4,9 @@ class Initiate extends CI_Controller
 {
         public function index()
         {
+			//$this->initiateStory(1,'hello id2');
             //$this->load->view('initiate_view');
-			
+
 			//$this->initiateStory(2,'point point point..');
         }
 
@@ -18,7 +19,7 @@ class Initiate extends CI_Controller
             $parent=NULL;
             $text = $this->input->post("starting_post");
 
-            $this->post_model->insertPost($nid,$parent,$text);           
+            $this->post_model->insertPost($nid,$parent,$text);
             //echo "called submit with  $starting_post";
 
             $this->start_story_from_post($nid,$parent,$text);
@@ -33,36 +34,37 @@ class Initiate extends CI_Controller
 
                      $nid = $data->{'nid'};
                      $text= $data->{'text'};
-                     
+
                      $this->initiateStory($nid, $text);
 
                      //return null;
           }
 
 
-          
+
           public function  initiateStory($nid,$text)
           {
                 $this->load->model('post_model');
                 $parent=NULL;
-                $this->post_model->insertPost($nid,$parent,$text);
-				
-                $this->point_for_initiate_story($nid);
-				
+                $pid = $this->post_model->insertPost($nid,$parent,$text);
+
+				 $this->point_for_initiate_story($nid);
+				 return $pid;
+
           }
-		  
-		  
+
+
      public function point_for_initiate_story($nid)//story initiate r jonno 10 point pabe
 	 {
-		
-		
-		
+
+
+
 		  $this->load->model('user_model');
 		 $this->user_model->add_point($nid,10);//initiate korar jonno 50 point
-		
-		
-		
-		
+
+
+
+
 	 }
 
 
