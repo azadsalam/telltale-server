@@ -42,7 +42,7 @@ class Group extends CI_Controller
         }
         public function list_group_helper($nid)
         {
-            $arr = $this->list_group($nid);
+            $arr = $this->list_of_owned_group($nid);
 
 
             $tmp['count'] = count($arr);
