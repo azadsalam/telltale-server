@@ -35,8 +35,11 @@ class Initiate extends CI_Controller
                      $nid = $data->{'nid'};
                      $text= $data->{'text'};
 
-                     $this->initiateStory($nid, $text);
+                     $pid = $this->initiateStory($nid, $text);
 
+                      $array['pid'] = $pid;
+
+                      print_r(json_encode($array,JSON_FORCE_OBJECT));
                      //return null;
           }
 
