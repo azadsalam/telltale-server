@@ -42,7 +42,28 @@ class OngoingStory_feed extends CI_Controller
                           print_r(json_encode($ret,JSON_FORCE_OBJECT));
         }
 
-         public function getFullStoryFromAndroid()
+        public function get_ongoing_stories_of_group()
+        {
+                         $json=$_SERVER['HTTP_JSON'];
+                         $data=json_decode($json);
+
+
+                          $start=intval($data->{'start'});
+                          $count =intval( $data->{'count'});
+                          $grpid =intval( $data->{'grpid'});
+
+
+                          $arr = $this->ongoing_stories_of_this_group($start, $count, $grpid);
+                          $i=$start;
+                          foreach($arr as $a)
+                          {
+                              $ret[$i] = $a;
+                              $i++;
+                          }
+                          print_r(json_encode($ret,JSON_FORCE_OBJECT));
+        }
+
+        public function getFullStoryFromAndroid()
         {
                          $json=$_SERVER['HTTP_JSON'];
                          $data=json_decode($json);

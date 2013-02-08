@@ -1,5 +1,5 @@
  <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -11,29 +11,29 @@ class Post_model extends CI_Model
    function post_delete($pid)
    {
 	   $parent=$pid;
-	   
+
 	   $this->db->delete('post', array('pid' => $pid));
-	   
-	   
-	   
+
+
+
 	   while($parent!= NULL)
 	   {
-		  
-		   
+
+
 		   $query="SELECT pid  FROM post WHERE isAppended = 1 AND parent = ? ";
-			
+
 		   $q=$this->db->query($query,$parent);
-	
+
 			if($q->num_rows == 1)
 			{
 					$row = $q->row();
-					 
+
 					$new_parent= $row->pid;
-					
+
 			}
 			else $new_parent=NULL;
-			
-		    
+
+
 			$query="SELECT pid FROM post WHERE parent = ?";
 			$q=$this->db->query($query,$parent);
 			   if($q->num_rows()>0)
@@ -41,25 +41,25 @@ class Post_model extends CI_Model
 				foreach($q->result() as $row)
 				{
 					//echo $row->pid;
-					$this->db->delete('post', array('pid' => $row->pid)); 
+					$this->db->delete('post', array('pid' => $row->pid));
 				}
 			   }
-			
-		     
-			
-	
+
+
+
+
 	     $parent=$new_parent;
-			
-					   
-		   
-		   
+
+
+
+
 	   }
-	   
-	   
-	   
+
+
+
    }
     //inserts the first post into database\
-	
+
 	public function find_root_contributer_of_story($pid)///ei pid ta last post er pid..ekta array reutrn korbe jar modhe shb contributer r nid thakbe
 	{
 		$index=-1;
@@ -68,9 +68,9 @@ class Post_model extends CI_Model
 		{
 			$index++;
 			$pid=$parent;
-			
+
 			$contributer[$index]=$this->get_nid($pid);
-			
+
 	      	$query="SELECT parent FROM post WHERE pid=?";
 			$q=$this->db->query($query,$pid);
 		   if($q->num_rows()>0)
@@ -80,19 +80,19 @@ class Post_model extends CI_Model
 				$parent=$row->parent;
 			}
 		   }
-		   
-		
-		
+
+
+
 		}
-		
-		
-		
+
+
+
 		$array['contributer']=$contributer;
 		$array['root']=$pid;
-		
-		
+
+
 		return $array;
-		
+
 	}
 	public function get_isSuggestedEnd($pid)
 	{
@@ -108,7 +108,7 @@ class Post_model extends CI_Model
 		   else return ;
 
 	}
-	
+
 	public function get_nid($pid)//eta ashole point add r shomoy lagtese
  	{
 		$query="SELECT nid FROM post WHERE pid=?";
@@ -123,15 +123,15 @@ class Post_model extends CI_Model
 		   else return ;
 
 	}
-	
-	
+
+
     public function insertPost($nid,$parent,$text)
     {
             $this->db->set('nid',$nid);
             $this->db->set('parent',$parent);
             $this->db->set('text',$text);
             $this->db->insert('post');
-			
+
 			return $this->db->insert_id();
     }
 
@@ -139,20 +139,20 @@ class Post_model extends CI_Model
    {
        $this->db->query('UPDATE post SET  isAppended = 1 WHERE pid = ?', $pid);
    }
-   
+
    function attach_post_to_group($pid,$grpid)
    {
 	   $array['grpid']=$grpid;
 	   $array['pid']=$pid;
 	   $this->db->query('UPDATE post SET  grpid = ? WHERE pid = ?',$array);
    }
-   
+
    function   detach_post_from_group($pid)
    {
-	   
+
 	   $this->db->query('UPDATE post SET  grpid = NULL WHERE pid = ?',$pid);
    }
- 
+
 
    public function mark_isEnd_true($pid)
    {
@@ -185,7 +185,7 @@ class Post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
-                            
+
                             if($c>=$start && $c<$start+$count)
                             {
 
@@ -207,13 +207,13 @@ class Post_model extends CI_Model
                if (isset($data))
                  return $data;
                else return;
-        
+
     }
-	
-	
+
+
 	function get_ongoing_stories_of_this_group($start,$count,$grpid)
 	{
-		
+
 		 $query="SELECT pid,nid,text FROM post WHERE parent IS NULL AND grpid = ? AND pid NOT IN
             (SELECT pid FROM published)ORDER BY timeStamp DESC ";
 
@@ -224,7 +224,7 @@ class Post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
-                            
+
                             if($c>=$start && $c<$start+$count)
                             {
 
@@ -246,14 +246,14 @@ class Post_model extends CI_Model
                if (isset($data))
                  return $data;
                else return;
-        
-		
-		
-		
-		
-		
+
+
+
+
+
+
 	}
-	
+
 
 
     function get_ongoing_personalStory($start,$count,$nid)// ekta nidrishto nid er jonno tar shb ongoing story er feed
@@ -269,11 +269,11 @@ class Post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
-                            
+
                             if($c>=$start && $c<$start+$count)
                             {
 
-                             $data[$c]['pid']=$row->pid;      
+                             $data[$c]['pid']=$row->pid;
                              $data[$c]['text']=$row->text;
                             }
                            if($c>=$start+$count)
@@ -290,7 +290,7 @@ class Post_model extends CI_Model
                if (isset($data))
                  return $data;
                else return;
-        
+
     }
 
   function  get_pid_nid_text_AllCompleted_PersonalStory($start,$count,$nid)//karo personal profile er shb story dekhar jonno
@@ -304,7 +304,7 @@ class Post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
-                            
+
                             if($c>=$start && $c<$start+$count)
                             {
 
@@ -325,23 +325,23 @@ class Post_model extends CI_Model
                  return $data;
                else return;
 
-      
+
   }
 
-  
+
   function  get_pid_nid_text_AllCompleted_story($start,$count)
   {
 
      $query="SELECT pid,nid,text FROM post WHERE parent IS NULL AND pid
          IN (SELECT pid FROM published) ORDER BY timeStamp DESC ";
-     
+
       $c=0;
         $q=$this->db->query($query);
               if($q->num_rows()>0)
 		{
 			foreach($q->result() as $row)
 			{
-                            
+
                             if($c>=$start && $c<$start+$count)
                             {
 
@@ -363,24 +363,24 @@ class Post_model extends CI_Model
                  return $data;
                else return;
 
-      
+
   }
-  
-  
+
+
   function get_completed_stories_of_this_group($start,$count,$grpid)
   {
-	  
-	  
+
+
      $query="SELECT pid,nid,text FROM post WHERE parent IS NULL AND grpid = ? AND pid
          IN (SELECT pid FROM published) ORDER BY timeStamp DESC ";
-      
+
       $c=0;
         $q=$this->db->query($query,$grpid);
         if($q->num_rows()>0)
 		{
 			foreach($q->result() as $row)
 			{
-                            
+
                             if($c>=$start && $c<$start+$count)
                             {
 
@@ -401,11 +401,11 @@ class Post_model extends CI_Model
                if (isset($data))
                  return $data;
                else return;
-	  
-	  
-	  
+
+
+
   }
-  
+
 
 
   function get_nid_text_isEnd($pid)
@@ -426,7 +426,7 @@ class Post_model extends CI_Model
                 return NULL;
 
   }
-  
+
   function get_nid_text_isSuggestedEnd_isEnd($pid)//isSuugestionEnd jog korar jonno unappended part e
   {
       $query="SELECT nid,text,isSuggestedEnd,isEnd FROM post WHERE pid=?";
@@ -440,7 +440,7 @@ class Post_model extends CI_Model
                        $attribute['text']=$row->text;
                        $attribute['isSuggestedEnd']=$row->isSuggestedEnd;
 					   $attribute['isEnd']=$row->isEnd;
-					   
+
                        return $attribute;
 
 		}
@@ -472,7 +472,7 @@ class Post_model extends CI_Model
         return $post_array;
     else return;
 
-      
+
   }
 
  function get_UnappendedPart_of_OngoingStory($lastAppendedPostId)//last jei post ta ongoing story r append hoise oita dile er child gula ferot korbe
@@ -516,7 +516,7 @@ class Post_model extends CI_Model
                          $post_array[$index]['nid']=$attribute['nid'];
                          $post_array[$index]['text']=$attribute['text'];
 						 $post_array[$index]['isSuggestedEnd']=$attribute['isSuggestedEnd'];
-						 
+
                          $index++;
                   }
           }
@@ -538,21 +538,21 @@ class Post_model extends CI_Model
 		if($q->num_rows == 1)
 		{
                        $row = $q->row();
-                       
+
                        return $row->pid;
 
 		}
                 return NULL;
-       
+
 
    }
-   
-   
+
+
 //// ******************************* Profile**********************************
 
  function get_count_initiate_story($nid)//ekta nid dile she koita initiate korse tar count dibe
  {
-	  
+
        $query="SELECT COUNT(pid) as initiate_count FROM post WHERE nid=? AND parent IS NULL ";
 
         $q=$this->db->query($query,$nid);
@@ -560,17 +560,17 @@ class Post_model extends CI_Model
 		if($q->num_rows ==1)
 		{
                        $row = $q->row();
-                       
+
                        return $row->initiate_count;
 
 		}
         else return 0;
-	 
+
  }
- 
+
  function get_count_comment_in_story($nid)
  {
-	 
+
 	  $query="SELECT COUNT(pid) as comment_count FROM post WHERE nid=? AND parent IS NOT NULL ";
 
         $q=$this->db->query($query,$nid);
@@ -578,19 +578,19 @@ class Post_model extends CI_Model
 		if($q->num_rows ==1)
 		{
                        $row = $q->row();
-                       
+
                        return $row->comment_count;
 
 		}
         else return 0;
-	 
-	 
+
+
  }
- 
- 
+
+
  function get_count_appended_comment($nid)
  {
-	 
+
 	  $query="SELECT COUNT(pid) as appended_count FROM post WHERE nid=? AND parent IS NOT NULL  AND isAppended = 1";
 
         $q=$this->db->query($query,$nid);
@@ -598,17 +598,17 @@ class Post_model extends CI_Model
 		if($q->num_rows ==1)
 		{
                        $row = $q->row();
-                       
+
                        return $row->appended_count;
 
 		}
         else return 0;
-	 
-	 
- }
-  
 
-    
+
+ }
+
+
+
 }
 
 ?>

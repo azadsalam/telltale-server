@@ -31,6 +31,23 @@ class CompletedStory_feed extends CI_Controller
             print_r( $array );
         }
 
+        public function getCompletedStoriesofGroupFeedFromAndroid()
+        {
+             $json=$_SERVER['HTTP_JSON'];
+             $data=json_decode($json);
+
+
+              $start = intval($data->{'start'});
+              $count  = intval( $data->{'count'});
+              $grpid =  intval( $data->{'grpid'});
+              $array = $this->completed_stories_of_this_group($start, $count, $grpid);
+
+
+            $array = json_encode($array, JSON_FORCE_OBJECT);
+
+            print_r( $array );
+        }
+
 
         public function getFullStoryFromAndroid()
         {
