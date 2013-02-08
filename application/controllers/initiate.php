@@ -47,7 +47,7 @@ class Initiate extends CI_Controller
                 $parent=NULL;
                 $this->post_model->insertPost($nid,$parent,$text);
 				
-				$this->point_for_initiate_story($nid);
+                $this->point_for_initiate_story($nid);
 				
           }
 		  
