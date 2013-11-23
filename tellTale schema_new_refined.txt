@@ -1,0 +1,113 @@
+/*
+TELL TELL SCHEMA - UPDATED 23rd November, 2013
+*/
+
+CREATE TABLE user
+(
+        nid                 INT NOT NULL AUTO_INCREMENT,
+        name                VARCHAR(40) NOT NULL,
+        mail                VARCHAR(50) NOT NULL,
+        password 	    VARCHAR(50) NOT NULL,
+	country 	    VARCHAR(50) NOT NULL,
+	isBanned            BOOL,
+        point               INT NOT NULL DEFAULT 0,
+        PRIMARY KEY(nid)
+);
+
+
+INSERT INTO `user` (`nid`, `name`, `mail`, `password`, `country`, `isBanned`) VALUES (NULL, 'Azad', 'salam_azad223@yahoo.com', ':p', 'Bangladesh', NULL);
+
+
+/*
+-- Currently point is NOT NULL -- 23-11-13
+ALTER TABLE  `user` CHANGE  `point`  `point` INT( 11 ) NULL DEFAULT  '0';
+
+
+*/
+
+
+CREATE TABLE post (
+        pid                 INT NOT NULL AUTO_INCREMENT,
+	nid                 INT NOT NULL,
+        grpid               INT DEFAULT NULL,
+        parent              INT DEFAULT NULL,
+        text                TEXT NOT NULL,
+	isSuggestedEnd      BOOL NOT NULL DEFAULT FALSE ,  
+        isEnd               BOOL NOT NULL DEFAULT FALSE ,  
+	isAppended          BOOL NOT NULL DEFAULT FALSE ,
+	timeStamp           TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY(pid),
+        FOREIGN KEY (nid) REFERENCES User(nid)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+
+);
+
+/*
+-- for now assuming that the post which are not in any certain group has NULL as grpid - so added DEFAULT NULL
+ALTER TABLE post ADD grpid integer
+*/
+
+CREATE TABLE vote (
+                pid                 INT NOT NULL,
+		nid                 INT NOT NULL,
+            PRIMARY KEY(pid,nid),
+		FOREIGN KEY (pid) REFERENCES Post(pid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+		FOREIGN KEY (nid) REFERENCES User(nid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+		
+);
+
+CREATE TABLE published 
+(
+                pid                 INT NOT NULL,
+		likeCount           INT ,
+		shareCount          INT ,
+		viewCount           INT ,
+        PRIMARY KEY(pid),
+		FOREIGN KEY (pid) REFERENCES Post(pid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+		
+);
+
+
+CREATE TABLE groupspace(
+        grpid                INT NOT NULL AUTO_INCREMENT,
+		name                VARCHAR(50) NOT NULL,
+		nid                 INT NOT NULL,
+        PRIMARY KEY(grpid),
+		FOREIGN KEY (nid) REFERENCES User(nid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE	
+);
+
+
+CREATE TABLE membership (
+        grpid               INT NOT NULL,
+	nid                 INT NOT NULL,
+        PRIMARY KEY(grpid,nid),
+		FOREIGN KEY (grpid) REFERENCES  groupspace(grpid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+		FOREIGN KEY (nid) REFERENCES User(nid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+		
+);
+
+/*
+membership (grpid,nid)
+*/
+
+/*
+
+SELECT *
+FROM  `post`
+ORDER BY TIMESTAMP DESC
+LIMIT 0 , 3
+
+*/
