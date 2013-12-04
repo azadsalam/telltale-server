@@ -9,13 +9,13 @@ CREATE TABLE user
         mail                VARCHAR(50) NOT NULL,
         password 	    VARCHAR(50) NOT NULL,
 	country 	    VARCHAR(50) NOT NULL,
-	isBanned            BOOL,
+	isBanned            BOOL NOT NULL DEFAULT FALSE,
         point               INT NOT NULL DEFAULT 0,
         PRIMARY KEY(nid)
 );
 
 
-INSERT INTO `user` (`nid`, `name`, `mail`, `password`, `country`, `isBanned`) VALUES (NULL, 'Azad', 'salam_azad223@yahoo.com', ':p', 'Bangladesh', NULL);
+INSERT INTO `user` (`nid`, `name`, `mail`, `password`, `country`) VALUES (NULL, 'Azad', 'salam_azad223@yahoo.com', ':p', 'Bangladesh');
 
 
 /*
