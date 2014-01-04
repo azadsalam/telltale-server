@@ -1,0 +1,4 @@
+'nid' => native ID
+'mail' =>
+'name' =>
+'is_logged_in' => true/false

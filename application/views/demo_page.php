@@ -3,15 +3,13 @@
 <?php $this->load->view('templates/sidebar') ?>
 <?php $this->load->view('templates/top_navigation') ?>
 
-<?php
-     $name = $this->session->userdata('name');
-     $nid = $this->session->userdata('nid');
-     echo "Wecome $name -> NID : $nid";
+<div class="row">
+  <div class="col-lg-12">
 
+      <h1>Blank Page <small>A Blank Slate</small></h1>
 
-?>
+  </div>
+</div><!-- /.row -->
 
 
 <?php $this->load->view('templates/footer') ?>
-
-

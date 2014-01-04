@@ -8,11 +8,12 @@
 class User_model extends CI_Model {
 
     private function process($str) {
-        return $str;
-        //return sha1($str.$this->config->item('encryption_key'));
+        //return $str;
+        return sha1($str.$this->config->item('encryption_key'));
     }
 
-    function get_native_id($mailid) {
+    function get_native_id($mailid)
+    {
         $this->db->select('nid');
         $this->db->where('mail', $mailid);
 
@@ -71,7 +72,8 @@ class User_model extends CI_Model {
         $this->db->insert('user');
     }
 
-    public function add_point($nid, $point) {
+    public function add_point($nid, $point)
+    {
         $query = "SELECT point FROM user WHERE nid=?";
         $q = $this->db->query($query, $nid);
 
@@ -111,5 +113,21 @@ class User_model extends CI_Model {
             return NULL;
     }
 
+
+    function validate($mail,$pass)
+    {
+        $this->db->select('nid, name');
+        $this->db->where('mail', $mail);
+        $this->db->where('password',  $this->process($pass));
+        $query = $this->db->get('user');
+
+        if($query->num_rows == 1)
+        {
+               $row = $query->row();
+               return array('nid' => $row->nid, 'name' => $row->name);
+        }
+        return FALSE;
+                //echo "False";
+    }
 }
 ?>

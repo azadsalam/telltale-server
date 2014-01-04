@@ -13,8 +13,15 @@ class Profile extends CI_Controller
 		
 		
 	}
-	
-	
+
+        public function view()
+        {
+            echo uri_string();
+        }
+
+
+
+
         public function get_point_from_android()
         {
             ///*

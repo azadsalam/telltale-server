@@ -38,6 +38,8 @@
 |
 */
 
+$route['profile/(:num)'] = "profile/view/$1";
+
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

@@ -3,7 +3,8 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Initiate extends CI_Controller {
+class Initiate extends CI_Controller
+{
 
     public function index() {
 
@@ -21,7 +22,7 @@ class Initiate extends CI_Controller {
         
         $pid = $this->initiateStory($nid, $text);
 
-        if($pid == FALSE || $pid ==NULL)
+        if($pid == FALSE || $pid == NULL)
         {
             echo "<br/><br/><br/>ERROR<br/><br/><br/>";
         }

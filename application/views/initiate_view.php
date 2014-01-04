@@ -1,6 +1,9 @@
-PLACE IT WHERE YOU WANT TO START A STORY 
 
-<script src="<?php echo base_url();?>jquery/jquery.js"></script>
+<?php $this->load->view('templates/header') ?>
+<?php $this->load->view('templates/navigation_init') ?>
+<?php $this->load->view('templates/sidebar') ?>
+<?php $this->load->view('templates/top_navigation') ?>
+
 
     <script>
 
@@ -11,7 +14,7 @@ $(document).ready(
 function()
 {
 
-    
+
 
    function post_callback(data,status)
    {
@@ -20,7 +23,7 @@ function()
        //data = 1 hole succesfully database a dhukse.... 0 hole hoy nai
        // do needed styling
    }
-   
+
 
     function initiate_story()
     {
@@ -63,6 +66,10 @@ echo form_close();
 
 
 ?>
+
+
+
+<?php $this->load->view('templates/footer') ?>
 
 
 </div>
